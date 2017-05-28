@@ -1,103 +1,52 @@
-import Expo from 'expo';
 import React from 'react';
 import {
     StyleSheet,
-    Text,
     View,
     Image,
-    Platform,
     TextInput,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Dimensions,
+    Text
 } from 'react-native';
 import {
     FormLabel,
     Button
 } from 'react-native-elements';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class OTP extends React.Component {
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <View style={styles.logo}>
-                    <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                        style={styles.image} />
+                    <Image source={{ uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                        style={styles.image}
+                    />
                 </View>
                 <View style={styles.form}>
-                    <FormLabel style={{alignItems: 'center', marginBottom: 5}}>Enter One-time Password</FormLabel>
+                    <FormLabel style={{ alignItems: 'center', marginBottom: 5 }}>Enter One-time Password</FormLabel>
                     <View style={styles.otpContainer}>
-                        <View>
-                            <TextInput
-                                defaultValue=""
-                                placeholderTextColor="rgba(0,0,0,0.3)"
-                                returnKeyLabel="Go"
-                                keyboardType="default"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                maxLength={1}
-                                onChangeText={(text) => {
-                                    this.setState({
-                                        otpFirst: text
-                                    });
-                                }}
-                            />
-                        </View>
-                        <View>
-                            <TextInput
-                                defaultValue=""
-                                placeholderTextColor="rgba(0,0,0,0.3)"
-                                returnKeyLabel="Go"
-                                keyboardType="default"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                maxLength={1}
-                                onChangeText={(text) => {
-                                    this.setState({
-                                        otpSecond: text
-                                    });
-                                }}
-                            />
-                        </View>
-                        <View>
-                            <TextInput
-                                defaultValue=""
-                                placeholderTextColor="rgba(0,0,0,0.3)"
-                                returnKeyLabel="Go"
-                                keyboardType="default"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                maxLength={1}
-                                onChangeText={(text) => {
-                                    this.setState({
-                                        otpThird: text
-                                    });
-                                }}
-                            />
-                        </View>
-                        <View>
-                            <TextInput
-                                defaultValue=""
-                                placeholderTextColor="rgba(0,0,0,0.3)"
-                                returnKeyLabel="Go"
-                                keyboardType="phone-pad"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                maxLength={1}
-                                onChangeText={(text) => {
-                                    this.setState({
-                                        otpFourth: text
-                                    });
-                                }}
-                            />
-                        </View>
+                      <View style={styles.textbox}>
+                        <Text style={{ fontSize: 18 }}>OTP</Text>
+                      </View>
+                      <View>
+                        <TextInput
+                          placeholderTextColor="rgba(0,0,0,0.3)"
+                          returnKeyLabel="Go"
+                          keyboardType="phone-pad"
+                          autoCapitalize="none"
+                          maxLength={4}
+                          autoCorrect={false}
+                          style={styles.input}
+                          underlineColorAndroid="transparent"
+                          onChangeText={(text) => {
+                              this.setState({
+                                  mobile: text
+                              });
+                          }}
+                        />
+                      </View>
                     </View>
                 </View>
                 <View style={styles.submit}>
@@ -119,26 +68,40 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        width:280,
-        height:280
+        width: 280,
+        height: 280
     },
     form: {
-        width: 210,
+        width: 0.6 * SCREEN_WIDTH,
         marginTop: 40
     },
     input: {
-        paddingLeft: 12,
-        borderWidth: 1,
-        borderColor: 'grey',
-        borderRadius: 10,
-        width: 35
+      backgroundColor: '#ffffff1F',
+      color: 'black',
+      height: 40,
+      borderColor: 'black',
+      borderWidth: 1,
+      paddingLeft: 10,
+      fontSize: 20,
+      width: 100,
+      marginTop: 10
     },
     submit: {
         marginTop: 50
     },
     otpContainer: {
-        flexDirection:'row',
-        justifyContent:'space-between'
+        flexDirection: 'row',
+        width: 0.6 * SCREEN_WIDTH,
+        justifyContent: 'center'
+    },
+    textbox: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 10,
+      paddingLeft: 5,
+      paddingRight: 5,
+      borderWidth: 1,
+      borderColor: 'gray'
     }
 });
 
