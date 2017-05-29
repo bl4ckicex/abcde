@@ -17,7 +17,7 @@ class LoginForm extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Image source={require('../images/background.jpg')} style={styles.backgroundImage}>
+
           <View style={styles.container}>
             <View>
               <Image source={require('../images/logo.png')} style={styles.LogoImage} />
@@ -81,7 +81,7 @@ class LoginForm extends Component {
               <Text style={{ color: 'white' }}>Sign up with us <Text style={{ color: 'white', textDecorationLine: 'underline' }} onPress={() => { Actions.register(); }} >now!</Text></Text>
             </View>
           </View>
-        </Image>
+
       </KeyboardAvoidingView>
     );
   }
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'gray'
   },
   backgroundImage: {
     flex: 1,

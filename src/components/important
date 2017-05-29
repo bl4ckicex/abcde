@@ -1,0 +1,1 @@
+<Image source={require('../images/background.jpg')} style={styles.backgroundImage}>
