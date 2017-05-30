@@ -6,21 +6,34 @@ import {
   Image,
   TextInput,
   Dimensions,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button } from 'react-native-elements';
+import { Button, SocialIcon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as ractions from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class LoginForm extends Component {
+
+  componentWillReceiveProps(nextProps) {
+  this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      Actions.maincategories();
+    }
+  }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
 
           <View style={styles.container}>
             <View>
-              <Image source={require('../images/logo.png')} style={styles.LogoImage} />
+              <Image source={require('../images/mavent_logo.png')} style={styles.LogoImage} />
             </View>
             <View style={styles.Form}>
                 <View>
@@ -70,12 +83,24 @@ class LoginForm extends Component {
                     title='LOGIN'
                     iconRight
                     icon={{ name: 'send' }}
-                    backgroundColor='black'
+                    backgroundColor='#0F3B5F'
 
                     onPress={() => {
                                 alert('login');
                   }}
                 />
+                <SocialIcon
+                  raised
+                  title='Sign In With Facebook'
+                  button
+                  type='facebook'
+
+                  onPress={() => {
+                    this.props.facebookLogin();
+                    this.onAuthComplete(this.props);
+                }}
+                />
+
             </View>
             <View style={styles.Register}>
               <Text style={{ color: 'white' }}>Sign up with us <Text style={{ color: 'white', textDecorationLine: 'underline' }} onPress={() => { Actions.register(); }} >now!</Text></Text>
@@ -90,18 +115,18 @@ class LoginForm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: 'gray',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'gray'
+
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'stretch'
   },
   LogoImage: {
-    height: 280,
-    width: 280
+    height: 200,
+    width: 200
   },
   Form: {
     width: 0.7 * SCREEN_WIDTH,
@@ -121,13 +146,18 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   Button: {
-    marginTop: 50,
-    width: 0.75 * SCREEN_WIDTH
+    marginTop: 40,
+    width: 0.75 * SCREEN_WIDTH,
+    //paddingBottom: 10
   },
   Register: {
-    marginTop: 15,
+      marginTop: 5,
     alignItems: 'center'
   }
 });
 
-export default LoginForm;
+function mapStateToProps({ auth }) {
+  return { token: auth.token };
+}
+
+export default connect(mapStateToProps, ractions)(LoginForm);

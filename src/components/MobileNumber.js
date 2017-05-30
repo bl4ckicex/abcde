@@ -22,7 +22,7 @@ class MobileNumber extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <View style={styles.logo}>
-                    <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                    <Image source={require('../images/mavent_logo.png')}
                         style={styles.image} />
                 </View>
                 <View>
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        width: 280,
-        height: 280
+        width: 200,
+        height: 200
     },
     form: {
         width: 0.4 * SCREEN_WIDTH,
