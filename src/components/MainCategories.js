@@ -4,6 +4,8 @@ import {
   View,
   AsyncStorage
 } from 'react-native';
+import { Button } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 class MainCategories extends Component {
 
@@ -14,13 +16,21 @@ class MainCategories extends Component {
 
   render() {
     return (
-      <View style={{ marginTop: 50 }}>
-        <Text>MAIN PAGE</Text>
-        <Text>MAIN PAGE</Text>
-        <Text>MAIN PAGE</Text>
-        <Text>MAIN PAGE</Text>
-        <Text>MAIN PAGE</Text>
-        <Text>MAIN PAGE</Text>
+      <View style={{ flex: 1, marginTop: 50, justifyContent: 'center' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text>MAIN PAGE</Text>
+          <Text>MAIN PAGE</Text>
+          <Text>MAIN PAGE</Text>
+          <Text>MAIN PAGE</Text>
+          <Text>MAIN PAGE</Text>
+          <Text>MAIN PAGE</Text>
+        </View>
+        <Button
+          large
+          raised
+          title="Go discovery"
+          onPress={() => Actions.discovery()}
+        />
       </View>
     );
   }
