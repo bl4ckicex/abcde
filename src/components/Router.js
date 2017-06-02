@@ -8,6 +8,7 @@ import WelcomeScreen from './WelcomeScreen';
 import MainCategories from './MainCategories';
 import Discovery from './Discovery';
 
+
 const RouterComponent = () => {
   return (
     <Router>
@@ -18,7 +19,7 @@ const RouterComponent = () => {
         <Scene key="mobile" component={MobileNumber} title="Mobile Number" />
         <Scene key="otp" component={OTP} title="Validate OTP" />
         <Scene key="maincategories" component={MainCategories} title="Main UI" />
-        <Scene key="discovery" component={Discovery} title="Discovery" />
+        <Scene key="discovery" component={Discovery} title="Discovery" hideNavBar={false} />
       </Scene>
     </Router>
   );

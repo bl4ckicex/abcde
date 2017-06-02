@@ -20,7 +20,8 @@ class WelcomeScreen extends Component {
       let token = await AsyncStorage.getItem('fb_token');
       // console.log(token);
       if (token) {
-        Actions.maincategories();
+        // Actions.maincategories();
+        Actions.discovery();
         this.setState({ token });
       } else {
         this.setState({ token: false });

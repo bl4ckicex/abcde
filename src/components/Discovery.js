@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
   ActivityIndicator,
-  Platform
+  Platform,
+  ScrollView,
+  Text,
+  Image,
+  Dimensions
 } from 'react-native';
 import {
   MapView,
@@ -11,7 +14,12 @@ import {
   Location,
   Permissions,
 } from 'expo';
-import { Button } from 'react-native-elements';
+import {
+  Card,
+  Icon
+ } from 'react-native-elements';
+ import data from './provider.json';
+const SCREEN_H = Dimensions.get('window').height;
 
 class Discovery extends Component {
 
@@ -20,12 +28,13 @@ class Discovery extends Component {
     errorMessage: null,
     location: null,
     region: {
-      longitude: 103.851959,
-      latitude: 1.290270,
+      longitude: 103.8198,
+      latitude: 1.3521,
       longitudeDelta: 0.0045,
       latitudeDelta: 0.0034
     }
   }
+
   componentWillMount() {
       if (Platform.OS === 'android' && !Constants.isDevice) {
         this.setState({
@@ -33,11 +42,12 @@ class Discovery extends Component {
         });
       } else {
         this.getLocationAsync();
-        // console.log(this.state.region);
+        // console.log(data);
       }
     }
 
   componentDidMount() {
+    this.getLocationAsync();
     this.setState({ mapLoaded: true });
     // this.getLocationAsync();
     // console.log(this.state.region);
@@ -65,6 +75,27 @@ class Discovery extends Component {
     }
   }
 
+  renderRow() {
+    return data.map((provider) => {
+      return (
+        <View key={provider.id} style={{ height: 80, backgroundColor: '#ffffff', margin: 5, marginBottom: 1, borderRadius: 15, borderWidth: 1, flexDirection: 'row' }}>
+          <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+            <Image source={require('./profile.png')} style={{ height: 45, width: 45, borderRadius: 22 }} />
+            <Text style={{ fontSize: 15 }}>{provider.Name}</Text>
+          </View>
+          <View style={{ flex: 2, alignItems: 'center' }}>
+            <Text style={{ fontSize: 15, paddingBottom: 15, paddingTop: 5 }}>{provider.Dist}</Text>
+            <Text style={{ fontSize: 20 }}>{provider.Service}</Text>
+          </View>
+          <View style={{ justifyContent: 'center', flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <Icon name='thumb-up' size={35} style={{ padding: 4 }} />
+            <Icon name='chat' size={40} />
+          </View>
+        </View>
+      );
+    });
+  }
+
   render() {
     if (!this.state.mapLoaded) {
       return (
@@ -75,28 +106,49 @@ class Discovery extends Component {
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.mapContainer}>
         <MapView
-          provider="google"
+          // provider="google"
           region={this.state.region}
           showsMyLocationButton
-          showsCompass
           showsUserLocation
           showsScale
           loadingEnabled
-          style={{ flex: 1 }}
+          style={{ height: 0.4 * SCREEN_H }}
         />
+        <View style={styles.listContainer}>
+          <View style={{ height: 40, borderWidth: 1, borderColor: 'black', backgroundColor: '#40506A', alignItems: 'center' }}>
+            <Text style={{ fontSize: 28, color: 'white'  }}>Mavens in this area!</Text>
+          </View>
+          <ScrollView
+            automaticallyAdjustContentInsets={false}
+          >
+            {this.renderRow()}
+          </ScrollView>
+        </View>
       </View>
+
     );
   }
 }
 
 const styles = {
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    right: 0
+  mapContainer: {
+    flex: 1,
+  },
+  detailWrapper: {
+    marginTop: 10,
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+
+  },
+  listContainer: {
+    backgroundColor: '#F5FCFF',
+    flex: 1,
+    borderTopColor: 'gray',
+    borderWidth: 1
   }
 };
 
