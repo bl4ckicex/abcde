@@ -4,3 +4,4 @@ Component Done
   RegisterForm
   Request OTP
   Validate OTP
+  Discovery
