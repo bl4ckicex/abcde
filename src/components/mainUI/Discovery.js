@@ -14,11 +14,9 @@ import {
   Location,
   Permissions,
 } from 'expo';
-import {
-  Card,
-  Icon
- } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
  import data from './provider.json';
+
 const SCREEN_H = Dimensions.get('window').height;
 
 class Discovery extends Component {
@@ -78,14 +76,14 @@ class Discovery extends Component {
   renderRow() {
     return data.map((provider) => {
       return (
-        <View key={provider.id} style={{ height: 80, backgroundColor: '#ffffff', margin: 5, marginBottom: 1, borderRadius: 15, borderWidth: 1, flexDirection: 'row' }}>
+        <View key={provider.id} style={{ height: 80, backgroundColor: 'white', margin: 1, flexDirection: 'row' }}>
           <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
-            <Image source={require('./profile.png')} style={{ height: 45, width: 45, borderRadius: 22 }} />
+            <Image source={require('../../images/profile.png')} style={{ height: 45, width: 45, borderRadius: 22 }} />
             <Text style={{ fontSize: 15 }}>{provider.Name}</Text>
           </View>
           <View style={{ flex: 2, alignItems: 'center' }}>
             <Text style={{ fontSize: 15, paddingBottom: 15, paddingTop: 5 }}>{provider.Dist}</Text>
-            <Text style={{ fontSize: 20 }}>{provider.Service}</Text>
+            <Text style={{ fontSize: 18 }}>{provider.Service}</Text>
           </View>
           <View style={{ justifyContent: 'center', flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Icon name='thumb-up' size={35} style={{ padding: 4 }} />
@@ -114,11 +112,11 @@ class Discovery extends Component {
           showsUserLocation
           showsScale
           loadingEnabled
-          style={{ height: 0.4 * SCREEN_H }}
+          style={{ height: 0.3 * SCREEN_H }}
         />
         <View style={styles.listContainer}>
-          <View style={{ height: 40, borderWidth: 1, borderColor: 'black', backgroundColor: '#40506A', alignItems: 'center' }}>
-            <Text style={{ fontSize: 28, color: 'white'  }}>Mavens in this area!</Text>
+          <View style={{ height: 40, borderTopWidth: 1, borderColor: 'gray', backgroundColor: '#00A0B0', alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ fontSize: 13, color: 'white'  }}>Mavens in this area!</Text>
           </View>
           <ScrollView
             automaticallyAdjustContentInsets={false}
@@ -145,10 +143,8 @@ const styles = {
 
   },
   listContainer: {
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#D5DED9',
     flex: 1,
-    borderTopColor: 'gray',
-    borderWidth: 1
   }
 };
 

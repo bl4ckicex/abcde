@@ -6,16 +6,16 @@ import {
     Image,
     TouchableOpacity,
     TextInput,
-    Platform,
-    Picker,
     KeyboardAvoidingView,
     Dimensions,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
+import SimplePicker from 'react-native-simple-picker';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const options = ['Male', 'Female'];
 
 class Register extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class Register extends React.Component {
             firstname: '',
             lastname: '',
             password: '',
-            gender: '-',
+            gender: 'Gender',
             date: '',
             maxDate: new Date()
         };
@@ -40,9 +40,9 @@ class Register extends React.Component {
                         <TouchableOpacity style={styles.profileBtn} onPress={() => {
                             alert("add picture");
                         }}>
-                        <Image source={require('../images/circle-with-plus.png')} style={styles.circlewithplus} />
+                        <Image source={require('../../images/circle-with-plus.png')} style={styles.circlewithplus} />
                         </TouchableOpacity>
-                        <Image source={require('../images/placeholderuser.png')} style={styles.profilepicimage} />
+                        <Image source={require('../../images/placeholderuser.png')} style={styles.profilepicimage} />
 
                     </View>
                     <View>
@@ -138,16 +138,23 @@ class Register extends React.Component {
 
                     <View style={styles.genderDateContainer}>
                       <View style={{ borderWidth: 1, borderColor: 'gray', paddingLeft: 3, justifyContent: 'center' }}>
-                          <Picker
-                              style={{ width: 0.3 * SCREEN_WIDTH, height: 20 }}
-                              selectedValue={this.state.gender}
-                              mode='dropdown'
-                              onValueChange={(gender) => this.setState({ gender })} >
-                                  <Picker.Item label="Gender" value="-" />
-                                  <Picker.Item label="Male" value="male" />
-                                  <Picker.Item label="Female" value="female" />
-                          </Picker>
+                        <Text
+                        style={{ width: 0.3 * SCREEN_WIDTH,
+                           paddingLeft: 10,
+                           fontSize: 16
+                         }}onPress={() => { this.refs.picker.show(); }}>{this.state.gender}</Text>
                       </View>
+
+                      <SimplePicker
+                        ref={'picker'}
+                        options={options}
+                        onSubmit={(option) => {
+                          this.setState({
+                            gender: option,
+                          });
+                        }}
+                      />
+
                         <View>
                             <DatePicker
                                 style={styles.datepicker}
@@ -201,8 +208,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 50,
     },
-    logo: {
-    },
     profileBtn: {
         position: 'absolute',
         paddingLeft: 115,
@@ -214,43 +219,6 @@ const styles = StyleSheet.create({
     },
     form: {
         width: 0.7 * SCREEN_WIDTH
-    },
-    emailBorder: {
-        ...Platform.select({
-            ios: {
-                height: 35
-            },
-        }),
-        borderWidth: 2,
-    },
-    passwordBorder: {
-        marginTop: 10,
-        ...Platform.select({
-            ios: {
-                height: 35
-            },
-        }),
-        borderWidth: 2,
-    },
-    retypePasswordBorder: {
-        marginTop: 10,
-        ...Platform.select({
-            ios: {
-                height: 35
-            },
-        }),
-        borderWidth: 2,
-    },
-    genderBorder: {
-        marginTop: 10,
-        ...Platform.select({
-            ios: {
-                height: 35
-            },
-        }),
-        borderWidth: 2,
-        width: 125,
-        flex: 1
     },
     gender: {
         width: 0.3 * SCREEN_WIDTH,

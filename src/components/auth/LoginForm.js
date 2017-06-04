@@ -11,7 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Button, SocialIcon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import * as ractions from '../actions';
+import * as ractions from '../../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -23,7 +23,7 @@ class LoginForm extends Component {
 
   onAuthComplete(props) {
     if (props.token) {
-      Actions.maincategories();
+      Actions.mainUI();
     }
   }
 
@@ -33,7 +33,7 @@ class LoginForm extends Component {
 
           <View style={styles.container}>
             <View>
-              <Image source={require('../images/mavent_logo.png')} style={styles.LogoImage} />
+              <Image source={require('../../images/mavent_logo.png')} style={styles.LogoImage} />
             </View>
             <View style={styles.Form}>
                 <View>
