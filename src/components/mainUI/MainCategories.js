@@ -16,9 +16,9 @@ import Profile from './Profile_self';
 class MainCategories extends Component {
 
   // this is to remove fb token for retry purposes
-  // componentWillMount() {
-  //   AsyncStorage.removeItem('fb_token');
-  // }
+  componentWillMount() {
+    AsyncStorage.removeItem('fb_token');
+  }
 
   render() {
     return (
@@ -26,6 +26,7 @@ class MainCategories extends Component {
         style={{ marginTop: (Platform.OS === 'android') ? 54 : 64 }}
         initialPage={0}
         locked
+        tabBarPosition={(Platform.OS === 'ios') ? "bottom" : "top"}
         renderTabBar={() => <MainTabBar />}
       >
 

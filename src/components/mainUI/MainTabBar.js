@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
+  Platform,
   View,
   TouchableOpacity,
 } from 'react-native';
@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 0,
     marginTop: 0,
-    borderWidth: 1,
+    borderWidth: (Platform.OS === 'ios') ? 0 : 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
+    borderBottomColor: (Platform.OS === 'ios') ? 0 : 'rgba(0,0,0,0.05)',
   },
 });
 

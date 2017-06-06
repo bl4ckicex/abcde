@@ -21,17 +21,18 @@ const SCREEN_H = Dimensions.get('window').height;
 
 class Discovery extends Component {
 
-  state = {
-    mapLoaded: false,
-    errorMessage: null,
-    location: null,
-    region: {
-      longitude: 103.8198,
-      latitude: 1.3521,
-      longitudeDelta: 0.0045,
-      latitudeDelta: 0.0034
-    }
-  }
+    state = {
+      mapLoaded: false,
+      errorMessage: null,
+      location: null,
+      region: {
+        longitude: 103.8198,
+        latitude: 1.3521,
+        longitudeDelta: 0.0045,
+        latitudeDelta: 0.0034
+      }
+    };
+
 
   componentWillMount() {
       if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -40,15 +41,16 @@ class Discovery extends Component {
         });
       } else {
         this.getLocationAsync();
-        // console.log(data);
+        // console.log(this.state.region);
       }
     }
 
   componentDidMount() {
-    this.getLocationAsync();
-    this.setState({ mapLoaded: true });
+
     // this.getLocationAsync();
-    // console.log(this.state.region);
+     this.setState({ mapLoaded: true });
+    // this.getLocationAsync();
+     // console.log(this.state.region);
   }
 
   async getLocationAsync() {

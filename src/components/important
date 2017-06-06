@@ -1,1 +1,29 @@
 <Image source={require('../images/background.jpg')} style={styles.backgroundImage}>
+<View style={styles.container}>
+  <Text>
+    {this.state.details.name}
+  </Text>
+  <Text>
+    {this.state.details.gender}
+  </Text>
+  <Text>
+    {this.state.details.email}
+  </Text>
+  <Text>
+    {this.state.details.id}
+  </Text>
+
+
+
+  async fetchdetails() {
+    const getID = 'https://graph.facebook.com/me?access_token=' + this.props.token;
+    fetch(getID)
+      .then((response) => response.json())
+        .then((responseData) => this.setState({ id: responseData.id }, () => {
+          const fetchdetails = 'https://graph.facebook.com/v2.9/' + this.state.id + '?fields=name,first_name,last_name,gender,age_range,email&access_token=' + this.props.token;
+          fetch(fetchdetails)
+            .then((response) => response.json())
+              .then((responseData1) => this.setState({ details: responseData1 }));
+          }
+       ));
+    }
