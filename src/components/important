@@ -27,3 +27,12 @@
           }
        ));
     }
+
+    <View style={styles.ball} />
+    <Image source={require('../images/profile.png')} style={{ height: 150, width: 150, borderRadius: 75, position: 'absolute' }} />
+
+    <SocialIcon
+      type='twitter'
+    />
+
+'rgba(0,0,0,0.05)'

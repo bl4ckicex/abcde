@@ -32,7 +32,7 @@ class MainCategories extends Component {
 
         <ScrollView tabLabel="md-browsers" style={styles.tabView}>
           <View style={styles.card}>
-            <Text>News</Text>
+            <Text>main categories</Text>
           </View>
         </ScrollView>
 
@@ -40,11 +40,12 @@ class MainCategories extends Component {
           <Discovery />
         </View>
 
-        <View tabLabel="ios-contact" style={{ flex: 1 }}>
+        <ScrollView tabLabel="ios-contact" style={{ flex: 1, marginTop: 0 }}>
           <Profile />
-        </View>
+        </ScrollView>
 
-        </ScrollableTabView>
+
+      </ScrollableTabView>
     );
   }
 }

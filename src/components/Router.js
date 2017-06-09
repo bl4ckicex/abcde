@@ -7,6 +7,7 @@ import Login from './auth/LoginForm';
 import MobileNumber from './auth/MobileNumber';
 import WelcomeScreen from './auth/WelcomeScreen';
 import MainCategories from './mainUI/MainCategories';
+import test from './test';
 
 
 const RouterComponent = () => {
