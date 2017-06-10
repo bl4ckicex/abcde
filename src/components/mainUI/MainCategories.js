@@ -29,10 +29,7 @@ class MainCategories extends Component {
         tabBarPosition={(Platform.OS === 'ios') ? "bottom" : "top"}
         renderTabBar={() => <MainTabBar />}
       >
-        <ScrollView tabLabel="ios-contact" style={{ flex: 1, marginTop: 0 }}>
-          <Profile />
-        </ScrollView>
-        
+
         <ScrollView tabLabel="md-browsers" style={styles.tabView}>
           <View style={styles.card}>
             <Text>main categories</Text>
@@ -42,6 +39,10 @@ class MainCategories extends Component {
         <View tabLabel="md-pin" style={{ flex: 1 }}>
           <Discovery />
         </View>
+
+        <ScrollView tabLabel="ios-contact" style={{ flex: 1, marginTop: 0 }}>
+          <Profile />
+        </ScrollView>
 
       </ScrollableTabView>
     );

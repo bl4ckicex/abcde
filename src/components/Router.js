@@ -14,7 +14,6 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key='auth' navigationBarStyle={{ backgroundColor: '#00A0B0' }} titleStyle={{ color: 'white' }}>
-        <Scene key="maincategories" component={MainCategories} title="M A V E N T" />
         <Scene key="welcomescreen" component={WelcomeScreen} hideNavBar />
         <Scene key="login" component={Login} title="Please Login" hideNavBar renderBackButton={() => (null)} panHandlers={null} />
         <Scene key="register" component={Register} title="Registration" hideNavBar={false} />

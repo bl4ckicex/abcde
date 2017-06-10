@@ -21,7 +21,7 @@ class Profile extends Component {
   }
 
   componentWillMount() {
-    // this.fetchdetails();
+    this.fetchdetails();
   }
 
   componentDidMount() {
@@ -49,8 +49,8 @@ class Profile extends Component {
             <Image source={require('../../images/profile.png')} style={{ height: 150, width: 150, borderRadius: 75, position: 'absolute' }} />
           </View>
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 2 }}>
-            <Text style={{ fontSize: 26, color: 'white', fontWeight: 'bold', textShadowColor: 'black', textShadowOffset: { width: 2, height: 1 } }}>May Wong</Text>
-            <Text style={{ fontSize: 18, color: 'white', paddingBottom: 2 }}>@maywong92</Text>
+            <Text style={{ fontSize: 26, color: 'white', fontWeight: 'bold', textShadowColor: 'black', textShadowOffset: { width: 2, height: 1 } }}>{this.state.details.name}</Text>
+            <Text style={{ fontSize: 18, color: 'white', paddingBottom: 2 }}>{this.state.details.email}</Text>
           </View>
         </View>
         <View style={{ backgroundColor: 'rgba(17, 109, 161, 0.9)', flex: 1.7, flexDirection: 'column' }}>
