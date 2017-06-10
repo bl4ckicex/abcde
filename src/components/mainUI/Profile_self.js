@@ -8,7 +8,8 @@ import {
   Platform
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Icon } from 'react-native-elements';
+import { SocialIcon, Icon } from 'react-native-elements';
+import StarRating from 'react-native-star-rating';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -70,6 +71,18 @@ class Profile extends Component {
             <View style={{ backgroundColor: 'rgba(196, 219, 231, 0.9)', flex: 5.5 }}>
               <View style={{ backgroundColor: 'white', flex: 1, margin: 12, borderRadius: 8 }}>
 
+                <View style={{ alignItems: 'center', paddingBottom: 5, borderBottomWidth: 1, borderColor: '#EDF4F7' }}>
+                  <Text style={{ fontSize: 16 }}>Verified</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <SocialIcon type='facebook' iconSize={14} style={{ height: 20, width: 20 }} />
+                    <Icon name='email' size={20} />
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 16 }}>Member since </Text>
+                    <Text style={{ fontSize: 16 }}>12/06/2017</Text>
+                  </View>
+                </View>
+
                 <View style={{ height: (Platform.OS === 'ios' ? 100 : 110), padding: 5, borderBottomWidth: 1, borderColor: '#EDF4F7', marginBottom: 0 }}>
                   <View style={{ paddingBottom: 3 }}>
                     <Text style={{ fontSize: 18, fontWeight: 'bold' }}>About</Text>
@@ -77,55 +90,34 @@ class Profile extends Component {
                   <Text style={{ textAlign: 'center', fontSize: 16 }}>"I am a dedicated person. I enjoy reading, and the knowledge and perspective that my reading gives me has strengthened my teaching skills...."</Text>
                 </View>
 
-                <View style={{ height: 140, padding: 5, borderBottomWidth: 1, borderColor: '#EDF4F7' }}>
+                <View style={{ height: 190, padding: 5, borderBottomWidth: 1, borderColor: '#EDF4F7' }}>
                   <View style={{ paddingBottom: 3 }}>
                     <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Skills and Expertise!</Text>
                   </View>
                   <View style={{ height: 50, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5 }}>
                     <Text style={{ fontSize: 18 }}>Photographer</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Icon name='star' size={20} />
-                      <Icon name='star' size={20} />
-                      <Icon name='star' size={20} />
-                      <Icon name='star' size={20} />
-                      <Icon name='star-border' size={20} />
-                    </View>
+                    <StarRating
+                      disabled
+                      maxStars={5}
+                      rating={3.5}
+                      starSize={20}
+                      starColor="#FFDD44"
+                    />
                   </View>
                   <View style={{ height: 50, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5 }}>
                     <Text style={{ fontSize: 18 }}>Math Tutor</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Icon name='star' size={20} />
-                      <Icon name='star' size={20} />
-                      <Icon name='star' size={20} />
-                      <Icon name='star-half' size={20} />
-                      <Icon name='star-border' size={20} />
-                    </View>
+                    <StarRating
+                      disabled
+                      maxStars={5}
+                      rating={5}
+                      starSize={20}
+                      starColor="#FFDD44"
+                    />
+                  </View>
+                  <View style={{ height: 50, backgroundColor: 'rgba(0, 0, 0, 0.1)', alignItems: 'center', borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.3)', borderRadius: 8 }}>
+
                   </View>
                 </View>
-                <Text style={{ fontSize: 18 }}>to show this can go as long as you desire!</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>empty slot</Text>
-                <Text style={{ fontSize: 18 }}>123</Text>
               </View>
             </View>
         </View>
