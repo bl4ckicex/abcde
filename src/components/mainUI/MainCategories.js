@@ -40,9 +40,11 @@ class MainCategories extends Component {
           <Discovery />
         </View>
 
+
         <ScrollView tabLabel="ios-contact" style={{ flex: 1, marginTop: 0 }}>
           <Profile />
         </ScrollView>
+
 
       </ScrollableTabView>
     );

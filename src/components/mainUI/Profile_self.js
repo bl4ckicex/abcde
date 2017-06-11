@@ -5,11 +5,13 @@ import {
   StyleSheet,
   Dimensions,
   Image,
-  Platform
+  Platform,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { SocialIcon, Icon } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
+import data from './reviews.json';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -40,6 +42,27 @@ class Profile extends Component {
           }
        ));
   }
+
+  renderReview = () => {
+    return data.slice(0, 4).map((reviews) => {
+      return (
+        <View key={reviews.id} style={{ borderBottomWidth: 1, borderColor: '#EDF4F7', alignItems: 'center', justifyContent: 'center', paddingBottom: 5 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 16, fontWeight: '500', paddingRight: 5 }}>{reviews.Reviewer_Name}</Text>
+              <StarRating
+                disabled
+                maxStars={5}
+                rating={parseInt(reviews.rating, 10)}
+                starSize={16}
+                starColor="#FFDD44"
+              />
+          </View>
+          <Text style={{ fontStyle: 'italic' }}>{reviews.content}</Text>
+        </View>
+      );
+    });
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -114,8 +137,24 @@ class Profile extends Component {
                       starColor="#FFDD44"
                     />
                   </View>
-                  <View style={{ height: 50, backgroundColor: 'rgba(0, 0, 0, 0.1)', alignItems: 'center', borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.3)', borderRadius: 8 }}>
-
+                  <TouchableOpacity onPress={() => alert('Adding new skill to monetize!')}>
+                    <View style={{ height: 50, backgroundColor: 'rgba(177, 183, 185, 0.1)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.1)', borderRadius: 8 }}>
+                      <Icon name='add-circle' color='rgba(177, 183, 185, 0.6)' />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <View style={{ height: 240, padding: 5 }}>
+                  <View style={{ paddingBottom: 3, flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Reviews</Text>
+                    <Text> (</Text><Text>{data.length}</Text><Text>)</Text>
+                  </View>
+                  <View style={{ paddingBottom: 10 }}>
+                    {this.renderReview()}
+                    <View style={{ height: 50, alignItems: 'center', justifyContent: 'center' }}>
+                      <TouchableOpacity onPress={() => alert('Loading more reviews!')}>
+                        <Icon name='more-horiz' color='rgba(177, 183, 185, 0.6)' />
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
               </View>
