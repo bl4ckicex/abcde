@@ -13,6 +13,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
     "react-native-datepicker": "^1.5.1",
     "react-native-elements": "^0.12.2",
+    "react-native-grid-component": "^1.0.6",
+    "react-native-looped-carousel": "^0.1.7",
     "react-native-maps": "^0.15.2",
     "react-native-router-flux": "^3.39.1",
     "react-native-scrollable-tab-view": "^0.6.6",

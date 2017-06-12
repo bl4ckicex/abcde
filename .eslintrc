@@ -3,7 +3,10 @@
   "env": {
     "browser": true
     },
-      "globals": {
-          "fetch": true
-        }
+  "globals": {
+      "fetch": true
+   },
+  "rules": {
+      "no-mixed-spaces-and-tabs": 0
+   }
 }

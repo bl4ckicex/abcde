@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   AsyncStorage,
   ScrollView,
-  Platform
+  Platform,
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import MainTabBar from './MainTabBar';
 import Discovery from './Discovery';
 import Profile from './Profile_self';
+import CategoryView from './CategoryView';
 
 
 class MainCategories extends Component {
 
-  // this is to remove fb token for retry purposes
+
+  // This is to remove fb token for retry purposes
   componentWillMount() {
-    AsyncStorage.removeItem('fb_token');
+    // AsyncStorage.removeItem('fb_token');
   }
 
   render() {
@@ -26,20 +27,17 @@ class MainCategories extends Component {
         style={{ marginTop: (Platform.OS === 'android') ? 54 : 64 }}
         initialPage={0}
         locked
-        tabBarPosition={(Platform.OS === 'ios') ? "bottom" : "top"}
+        tabBarPosition={(Platform.OS === 'ios') ? 'bottom' : 'top'}
         renderTabBar={() => <MainTabBar />}
       >
 
         <ScrollView tabLabel="md-browsers" style={styles.tabView}>
-          <View style={styles.card}>
-            <Text>main categories</Text>
-          </View>
+          <CategoryView />
         </ScrollView>
 
         <View tabLabel="md-pin" style={{ flex: 1 }}>
           <Discovery />
         </View>
-
 
         <ScrollView tabLabel="ios-contact" style={{ flex: 1, marginTop: 0 }}>
           <Profile />
@@ -54,7 +52,7 @@ class MainCategories extends Component {
 const styles = StyleSheet.create({
   tabView: {
     flex: 1,
-    padding: 10,
+    //padding: 10,
     backgroundColor: 'rgba(0,0,0,0.01)',
   },
   card: {
