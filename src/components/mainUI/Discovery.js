@@ -80,7 +80,7 @@ class Discovery extends Component {
       return (
         <View key={provider.id} style={{ height: 80, backgroundColor: 'white', margin: 1, flexDirection: 'row' }}>
           <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
-            <Image source={require('../../images/profile.png')} style={{ height: 45, width: 45, borderRadius: 22 }} />
+            <Image source={require('../../../assets/images/profile.png')} style={{ height: 45, width: 45, borderRadius: 22 }} />
             <Text style={{ fontSize: 15 }}>{provider.Name}</Text>
           </View>
           <View style={{ flex: 2, alignItems: 'center' }}>

@@ -39,9 +39,9 @@ class Register extends React.Component {
                         <TouchableOpacity style={styles.profileBtn} onPress={() => {
                             alert('add picture');
                         }}>
-                        <Image source={require('../../images/circle-with-plus.png')} style={styles.circlewithplus} />
+                        <Image source={require('../../../assets/images/circle-with-plus.png')} style={styles.circlewithplus} />
                         </TouchableOpacity>
-                        <Image source={require('../../images/placeholderuser.png')} style={styles.profilepicimage} />
+                        <Image source={require('../../../assets/images/placeholderuser.png')} style={styles.profilepicimage} />
 
                     </View>
                     <View>

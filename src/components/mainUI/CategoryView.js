@@ -17,25 +17,37 @@ const { width, height } = Dimensions.get('window');
 const HORIZONTAL_PADDING = 6;
 const imageDetails = [
         {
-          name: 'Tutors',
-          image: require('../../images/dummyListViewImage/Category 1.jpg')
+          name: 'Comfortable Home',
+          image: require('../../../assets/images/ListView/Category1.jpg')
         },
         {
-          name: 'Fitness Trainers',
-          image: require('../../images/dummyListViewImage/Category 2.jpg')
+          name: 'Enhancing knowledge',
+          image: require('../../../assets/images/ListView/Category2.jpg')
         },
         {
-          name: 'Repairs',
-          image: require('../../images/dummyListViewImage/Category 3.jpg')
+          name: 'Enhancing Events',
+          image: require('../../../assets/images/ListView/Category3.jpg')
         },
         {
-          name: 'Classes',
-          image: require('../../images/dummyListViewImage/Category 4.jpg')
+          name: 'Extra Care',
+          image: require('../../../assets/images/ListView/Category4.jpg')
         },
         {
-          name: 'Others',
-          image: require('../../images/dummyListViewImage/Category 5.jpg')
-        }
+          name: 'Filling Tummies',
+          image: require('../../../assets/images/ListView/Category5.jpg')
+        },
+        {
+          name: 'Healthy Lifestyle',
+          image: require('../../../assets/images/ListView/Category6.jpg')
+        },
+        {
+          name: 'Helping Hands',
+          image: require('../../../assets/images/ListView/Category7.jpg')
+        },
+        {
+          name: 'Look Better',
+          image: require('../../../assets/images/ListView/Category8.jpg')
+        },
   ];
 
 class CategoryView extends Component {
@@ -51,7 +63,7 @@ class CategoryView extends Component {
 		return (
 			<View style={renderItemContainer} key={index}>
 				<TouchableOpacity>
-					<Image source={data.image} style={itemImageStyle} > 
+					<Image source={data.image} style={itemImageStyle} >
 						<Text style={placeholderItemNameStyle}> {data.name} </Text>
 					</Image>
 				</TouchableOpacity>
@@ -74,24 +86,24 @@ class CategoryView extends Component {
 					//bulletsContainerStyle={bulletViewStyle}
 				>
 					<View style={this.state.size}>
-						<Image source={require('../../images/dummyCarouselImage/Dummy 1.jpg')} style={carouselImageStlye} />
+						<Image source={require('../../../assets/images/dummyCarouselImage/Dummy 1.jpg')} style={carouselImageStlye} />
 					</View>
 
 					<View style={this.state.size}>
-						<Image source={require('../../images/dummyCarouselImage/Dummy 2.jpg')} style={carouselImageStlye} />
+						<Image source={require('../../../assets/images/dummyCarouselImage/Dummy 2.jpg')} style={carouselImageStlye} />
 					</View>
 
 					<View style={this.state.size}>
-						<Image source={require('../../images/dummyCarouselImage/Dummy 3.jpg')} style={carouselImageStlye} />
+						<Image source={require('../../../assets/images/dummyCarouselImage/Dummy 3.jpg')} style={carouselImageStlye} />
 					</View>
 				</Carousel>
 
 				<Grid
 					style={styles.list}
-					renderItem={this.renderItem}
+				  renderItem={this.renderItem}
 					renderPlaceholder={this.renderBlank}
 					data={imageDetails}
-					itemsPerRow={2} 
+					itemsPerRow={2}
 				/>
 
 			</View>
@@ -114,34 +126,34 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   renderItemContainer: {
-  	flex: 1, 
-  	justifyContent: 'center', 
-  	alignItems: 'center', 
+  	flex: 1,
+  	justifyContent: 'center',
+  	alignItems: 'center',
   	paddingTop: 5
   },
   itemImageStyle: {
   	flexDirection: 'row',
-	justifyContent: 'center',
-	alignItems: 'flex-end',
-	width: (width / 2) - HORIZONTAL_PADDING, 
-	height: 160,
+  	justifyContent: 'center',
+  	alignItems: 'flex-end',
+  	width: (width / 2) - HORIZONTAL_PADDING,
+  	height: 160,
   },
   placeholderItemNameStyle: {
-	textAlign: 'center',
-	justifyContent: 'center',
-	marginBottom: 5,
-	fontSize: 15,
-	color: 'white',
-	fontWeight: 'bold',
-	backgroundColor: '#0000007F',
-	borderRadius: 5,
-	paddingLeft: 1,
-	paddingRight: 3,
-	overflow: 'hidden'
+  	textAlign: 'center',
+  	justifyContent: 'center',
+  	marginBottom: 5,
+  	fontSize: 15,
+  	color: 'white',
+  	fontWeight: 'bold',
+  	backgroundColor: '#0000007F',
+  	borderRadius: 5,
+  	paddingLeft: 1,
+  	paddingRight: 3,
+  	overflow: 'hidden'
   },
   list: {
     flex: 1,
-    paddingTop: 100
+    paddingTop: 100,
   },
 });
 

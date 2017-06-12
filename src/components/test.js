@@ -21,7 +21,7 @@ class test extends Component {
         <View style={{ backgroundColor: '#0B486B', flex: 1 }} >
           <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', marginTop: 8 }}>
             <View style={styles.ball} />
-            <Image source={require('../images/profile.png')} style={{ height: 150, width: 150, borderRadius: 75, position: 'absolute' }} />
+            <Image source={require('../../assets/images/profile.png')} style={{ height: 150, width: 150, borderRadius: 75, position: 'absolute' }} />
           </View>
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 2 }}>
             <Text style={{ fontSize: 26, color: 'white', fontWeight: 'bold', textShadowColor: 'black', textShadowOffset: { width: 2, height: 1 } }}>May Wong</Text>

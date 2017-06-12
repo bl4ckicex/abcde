@@ -33,7 +33,7 @@ class LoginForm extends Component {
 
           <View style={styles.container}>
             <View>
-              <Image source={require('../../images/mavent_logo.png')} style={styles.LogoImage} />
+              <Image source={require('../../../assets/images/mavent_logo.png')} style={styles.LogoImage} />
             </View>
             <View style={styles.Form}>
                 <View>
