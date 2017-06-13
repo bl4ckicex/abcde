@@ -143,7 +143,7 @@ class Profile extends Component {
                     </View>
                   </TouchableOpacity>
                 </View>
-                <View style={{ height: (Platform.OS === 'ios' ? 240 : 260), padding: 5 }}>
+                <View style={{ height: (Platform.OS === 'ios' ? 240 : 270), padding: 5 }}>
                   <View style={{ paddingBottom: 3, flexDirection: 'row' }}>
                     <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Reviews</Text>
                     <Text> (</Text><Text>{data.length}</Text><Text>)</Text>

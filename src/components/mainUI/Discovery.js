@@ -35,14 +35,8 @@ class Discovery extends Component {
 
 
   componentWillMount() {
-      if (Platform.OS === 'android' && !Constants.isDevice) {
-        this.setState({
-          errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-        });
-      } else {
         this.getLocationAsync();
         // console.log(this.state.region);
-      }
     }
 
   componentDidMount() {

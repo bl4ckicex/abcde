@@ -12,40 +12,49 @@ import {
   View,
   Dimensions
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const { width, height } = Dimensions.get('window');
 const HORIZONTAL_PADDING = 6;
 const imageDetails = [
         {
           name: 'Comfortable Home',
+          id: 'comfy',
           image: require('../../../assets/images/ListView/Category1.jpg')
         },
         {
           name: 'Enhancing knowledge',
+          id: 'enKnowledge',
           image: require('../../../assets/images/ListView/Category2.jpg')
         },
         {
           name: 'Enhancing Events',
+          id: 'enEvent',
           image: require('../../../assets/images/ListView/Category3.jpg')
         },
         {
           name: 'Extra Care',
+          id: 'Care',
           image: require('../../../assets/images/ListView/Category4.jpg')
         },
         {
           name: 'Filling Tummies',
+          id: 'fillTummy',
           image: require('../../../assets/images/ListView/Category5.jpg')
         },
         {
           name: 'Healthy Lifestyle',
+          id: 'health',
           image: require('../../../assets/images/ListView/Category6.jpg')
         },
         {
           name: 'Helping Hands',
+          id: 'helpHand',
           image: require('../../../assets/images/ListView/Category7.jpg')
         },
         {
           name: 'Look Better',
+          id: 'lookBetter',
           image: require('../../../assets/images/ListView/Category8.jpg')
         },
   ];
@@ -58,11 +67,34 @@ class CategoryView extends Component {
 		this.renderItem = this.renderItem.bind(this);
 	}
 
+  navigate = (id) => {
+    switch (id) {
+      case 'comfy':
+        return Actions.comfy();
+      case 'enKnowledge':
+        return Actions.enKnowledge();
+      case 'enEvent':
+        return Actions.enEvent();
+      case 'Care':
+        return Actions.Care();
+      case 'fillTummy':
+        return Actions.fillTummy();
+      case 'health':
+        return Actions.health();
+      case 'helpHand':
+        return Actions.helpHand();
+      case 'lookBetter':
+        return Actions.lookBetter();
+      default:
+        break;
+    }
+  }
+
 	renderItem(data, index) {
 		const { carouselImageStlye, renderItemContainer, itemImageStyle, placeholderItemNameStyle } = styles;
 		return (
 			<View style={renderItemContainer} key={index}>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => this.navigate(data.id)}>
 					<Image source={data.image} style={itemImageStyle} >
 						<Text style={placeholderItemNameStyle}> {data.name} </Text>
 					</Image>
@@ -78,7 +110,7 @@ class CategoryView extends Component {
 		return (
 			<View>
 				<Carousel
-					delay={3000}
+					delay={6000}
 					style={this.state.size}
 					autoplay
 					pageinfo
@@ -86,15 +118,15 @@ class CategoryView extends Component {
 					//bulletsContainerStyle={bulletViewStyle}
 				>
 					<View style={this.state.size}>
-						<Image source={require('../../../assets/images/dummyCarouselImage/Dummy 1.jpg')} style={carouselImageStlye} />
+						<Image source={require('../../../assets/images/CarouselView/Image2-1.jpg')} style={carouselImageStlye} />
 					</View>
 
 					<View style={this.state.size}>
-						<Image source={require('../../../assets/images/dummyCarouselImage/Dummy 2.jpg')} style={carouselImageStlye} />
+						<Image source={require('../../../assets/images/CarouselView/Image1.jpg')} style={carouselImageStlye} />
 					</View>
 
 					<View style={this.state.size}>
-						<Image source={require('../../../assets/images/dummyCarouselImage/Dummy 3.jpg')} style={carouselImageStlye} />
+						<Image source={require('../../../assets/images/CarouselView/Image3-1.jpg')} style={carouselImageStlye} />
 					</View>
 				</Carousel>
 
@@ -117,7 +149,9 @@ const styles = StyleSheet.create({
     height: 160,
   },
   carouselImageStlye: {
-    resizeMode: 'cover'
+    // resizeMode: 'contain'
+    height: 160,
+    width,
   },
   bulletViewStyle: {
   	flex: 1,

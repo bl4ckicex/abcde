@@ -5,6 +5,8 @@ import {
   AsyncStorage,
   ScrollView,
   Platform,
+  BackHandler,
+  ToastAndroid
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import MainTabBar from './MainTabBar';
@@ -14,8 +16,6 @@ import CategoryView from './CategoryView';
 
 
 class MainCategories extends Component {
-
-
   // This is to remove fb token for retry purposes
   componentWillMount() {
     // AsyncStorage.removeItem('fb_token');

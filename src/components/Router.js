@@ -7,7 +7,14 @@ import Login from './auth/LoginForm';
 import MobileNumber from './auth/MobileNumber';
 import WelcomeScreen from './auth/WelcomeScreen';
 import MainCategories from './mainUI/MainCategories';
-import test from './test';
+import comfy from './mainUI/SubCategories/comfy';
+import Care from './mainUI/SubCategories/Care';
+import enEvent from './mainUI/SubCategories/enEvent';
+import fillTummy from './mainUI/SubCategories/fillTummy';
+import health from './mainUI/SubCategories/health';
+import helpHand from './mainUI/SubCategories/helpHand';
+import lookBetter from './mainUI/SubCategories/lookBetter';
+import enKnowledge from './mainUI/SubCategories/enKnowledge';
 
 
 const RouterComponent = () => {
@@ -20,9 +27,19 @@ const RouterComponent = () => {
         <Scene key="mobile" component={MobileNumber} title="Mobile Number" />
         <Scene key="otp" component={OTP} title="Validate OTP" />
       </Scene>
-      <Scene key='mainUI' navigationBarStyle={{ backgroundColor: '#00A0B0', paddingTop: Platform.OS === 'android' ? 10 : 0 }} titleStyle={{ color: 'white' }}>
-        <Scene key="maincategories" component={MainCategories} title="M A V E N T" renderBackButton={() => (null)} panHandlers={null} />
+
+      <Scene key='mainUI' navigationBarStyle={{ backgroundColor: '#00A0B0' }} titleStyle={{ color: 'white' }}>
+        <Scene key="MainCategories" component={MainCategories} title="M A V E N T" renderBackButton={() => (null)} panHandlers={null} />
+        <Scene key="comfy" component={comfy} title="Comfortable Home" />
+        <Scene key="Care" component={Care} title="Extra Care" />
+        <Scene key="enEvent" component={enEvent} title="Enhancing Events" />
+        <Scene key="fillTummy" component={fillTummy} title="Filling Tummies" />
+        <Scene key="health" component={health} title="Healthy Lifestyle" />
+        <Scene key="helpHand" component={helpHand} title="Helping Hands" />
+        <Scene key="lookBetter" component={lookBetter} title="Looking Better" />
+        <Scene key="enKnowledge" component={enKnowledge} title="Enhancing knowledge" />
       </Scene>
+
     </Router>
   );
 };
