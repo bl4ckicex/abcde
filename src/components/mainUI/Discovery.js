@@ -111,7 +111,7 @@ class Discovery extends Component {
           style={{ height: 0.3 * SCREEN_H }}
         />
         <View style={styles.listContainer}>
-          <View style={{ height: 40, borderTopWidth: 1, borderColor: 'gray', backgroundColor: '#00A0B0', alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ height: 40, borderTopWidth: 1, borderColor: 'gray', backgroundColor: '#0B486B', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 13, color: 'white'  }}>Mavens in this area!</Text>
           </View>
           <ScrollView

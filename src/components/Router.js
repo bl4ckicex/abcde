@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux';
 import OTP from './auth/OTP';
 import Register from './auth/Register';
@@ -20,7 +19,7 @@ import enKnowledge from './mainUI/SubCategories/enKnowledge';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key='auth' navigationBarStyle={{ backgroundColor: '#00A0B0' }} titleStyle={{ color: 'white' }}>
+      <Scene key='auth' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18 }}>
         <Scene key="welcomescreen" component={WelcomeScreen} hideNavBar />
         <Scene key="login" component={Login} title="Please Login" hideNavBar renderBackButton={() => (null)} panHandlers={null} />
         <Scene key="register" component={Register} title="Registration" hideNavBar={false} />
@@ -28,7 +27,7 @@ const RouterComponent = () => {
         <Scene key="otp" component={OTP} title="Validate OTP" />
       </Scene>
 
-      <Scene key='mainUI' navigationBarStyle={{ backgroundColor: '#00A0B0' }} titleStyle={{ color: 'white' }}>
+      <Scene key='mainUI' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18, fontWeight: '400' }}>
         <Scene key="MainCategories" component={MainCategories} title="M A V E N T" renderBackButton={() => (null)} panHandlers={null} />
         <Scene key="comfy" component={comfy} title="Comfortable Home" />
         <Scene key="Care" component={Care} title="Extra Care" />
@@ -39,7 +38,6 @@ const RouterComponent = () => {
         <Scene key="lookBetter" component={lookBetter} title="Looking Better" />
         <Scene key="enKnowledge" component={enKnowledge} title="Enhancing knowledge" />
       </Scene>
-
     </Router>
   );
 };

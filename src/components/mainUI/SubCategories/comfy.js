@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import {
   View,
@@ -7,12 +5,62 @@ import {
   StyleSheet,
   Platform,
   Dimensions,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
+import Grid from 'react-native-grid-component';
 import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const { width, height } = Dimensions.get('window');
+const HORIZONTAL_PADDING = 6;
+const imageDetails = [
+      {
+        name: 'Cleaning',
+        id: 'clean',
+        image: require('../../../../assets/images/subCategories/comfy/cleaning.jpg')
+      },
+      {
+        name: 'Plumber',
+        id: 'plumber',
+        image: require('../../../../assets/images/subCategories/comfy/plumber.jpg')
+      },
+    ];
+
 class comfy extends Component {
+  constructor(props) {
+    super(props);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
+  navigate = (id) => {
+    switch (id) {
+      case 'clean':
+        console.log(id);
+        break;
+      case 'plumber':
+        console.log(id);
+        break;
+      default:
+        break;
+    }
+  }
+
+  renderItem(data, index) {
+    const { renderItemContainer, itemImageStyle, placeholderItemNameStyle } = styles;
+    return (
+      <View style={renderItemContainer} key={index}>
+        <TouchableOpacity onPress={() => this.navigate(data.id)}>
+          <Image source={data.image} style={itemImageStyle} >
+            <Text style={placeholderItemNameStyle}> {data.name} </Text>
+          </Image>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  renderBlank = () => <View style={[{ backgroundColor: 'white' }, styles.item]} key='empty' />
+
   render() {
     return (
       <View style={styles.container}>
@@ -37,7 +85,16 @@ class comfy extends Component {
           </View>
         </View>
 
-        <View style={{ flex: 2.5 }}></View>
+        <View style={{ flex: 2.4 }}>
+          <Grid
+            style={styles.list}
+            renderItem={this.renderItem}
+            renderPlaceholder={this.renderBlank}
+            data={imageDetails}
+            itemsPerRow={2}
+          />
+
+        </View>
       </View>
     );
   }
@@ -84,7 +141,38 @@ const styles = StyleSheet.create({
   buttonStyle: {
     width: (Platform.OS === 'ios' ? SCREEN_WIDTH / 2.3 : SCREEN_WIDTH / 2.4),
     paddingLeft: 15
-  }
+  },
+  item: {
+    flex: 1,
+    height: 160,
+  },
+  renderItemContainer: {
+  	flex: 1,
+  	justifyContent: 'center',
+  	alignItems: 'center',
+  	paddingTop: 5
+  },
+  itemImageStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    width: (width / 2) - HORIZONTAL_PADDING,
+    height: 160,
+  },
+  placeholderItemNameStyle: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    marginBottom: 5,
+    fontSize: 15,
+    color: 'white',
+    fontWeight: 'bold',
+    backgroundColor: '#0000007F',
+    borderRadius: 5,
+    paddingLeft: 1,
+    paddingRight: 3,
+    overflow: 'hidden'
+  },
+
 });
 
 export default comfy;

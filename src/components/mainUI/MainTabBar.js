@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  Platform,
   View,
   TouchableOpacity,
 } from 'react-native';
@@ -33,9 +32,9 @@ const MainTabBar = React.createClass({
 
   //color between rgb(59,89,152) and rgb(204,204,204)
   iconColor(progress) {
-    const red = 59 + (204 - 59) * progress;
-    const green = 89 + (204 - 89) * progress;
-    const blue = 152 + (204 - 152) * progress;
+    const red = 24 + (255 - 24) * progress;
+    const green = 155 + (255 - 155) * progress;
+    const blue = 230 + (255 - 230) * progress;
     return `rgb(${red}, ${green}, ${blue})`;
   },
 
@@ -46,7 +45,7 @@ const MainTabBar = React.createClass({
           <Icon
             name={tab}
             size={30}
-            color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
+            color={this.props.activeTab === i ? 'rgb(24,155,230)' : 'rgb(204,204,204)'}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
         </TouchableOpacity>;
@@ -60,19 +59,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 0,
-    backgroundColor: '#00A0B0',
+    backgroundColor: '#0B486B',
+
   },
   tabs: {
-    height: 50,
+    height: 51,
     flexDirection: 'row',
-    paddingTop: 0,
-    marginTop: 0,
-    borderWidth: (Platform.OS === 'ios') ? 0 : 0,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderBottomColor: (Platform.OS === 'ios') ? 0 : 0,
+    borderBottomColor: 'black'
   },
 });
 

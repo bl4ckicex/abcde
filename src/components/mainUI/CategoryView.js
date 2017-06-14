@@ -91,7 +91,7 @@ class CategoryView extends Component {
   }
 
 	renderItem(data, index) {
-		const { carouselImageStlye, renderItemContainer, itemImageStyle, placeholderItemNameStyle } = styles;
+		const { renderItemContainer, itemImageStyle, placeholderItemNameStyle } = styles;
 		return (
 			<View style={renderItemContainer} key={index}>
 				<TouchableOpacity onPress={() => this.navigate(data.id)}>

@@ -4,13 +4,71 @@ import {
   Text,
   StyleSheet,
   Platform,
+  Dimensions,
   Image,
-  Dimensions
+  TouchableOpacity
 } from 'react-native';
+import Grid from 'react-native-grid-component';
 import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const { width } = Dimensions.get('window');
+const HORIZONTAL_PADDING = 6;
+const imageDetails = [
+      {
+        name: 'Midwives',
+        id: 'midwives',
+        image: require('../../../../assets/images/subCategories/Care/midwives.jpg')
+      },
+      {
+        name: 'Elderly Care',
+        id: 'elderly',
+        image: require('../../../../assets/images/subCategories/Care/elderlycare.jpg')
+      },
+      {
+        name: 'Baby Care',
+        id: 'baby',
+        image: require('../../../../assets/images/subCategories/Care/babycare.jpg')
+      },
+    ];
+
 class Care extends Component {
+  constructor(props) {
+    super(props);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
+  navigate = (id) => {
+    switch (id) {
+      case 'midwives':
+        console.log(id);
+        break;
+      case 'elderly':
+        console.log(id);
+        break;
+      case 'baby':
+        console.log(id);
+        break;
+      default:
+        break;
+    }
+  }
+
+  renderItem(data, index) {
+    const { renderItemContainer, itemImageStyle, placeholderItemNameStyle } = styles;
+    return (
+      <View style={renderItemContainer} key={index}>
+        <TouchableOpacity onPress={() => this.navigate(data.id)}>
+          <Image source={data.image} style={itemImageStyle} >
+            <Text style={placeholderItemNameStyle}> {data.name} </Text>
+          </Image>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  renderBlank = () => <View style={[{ backgroundColor: 'white' }, styles.item]} key='empty' />
+
   render() {
     return (
       <View style={styles.container}>
@@ -21,7 +79,7 @@ class Care extends Component {
           <View style={styles.contentContainer}>
             <View style={{ backgroundColor: 'white', borderRadius: 5, flex: 2, justifyContent: 'center' }}>
               <View style={{ padding: 5, alignItems: 'center' }}>
-                <Text style={{ fontSize: (Platform.OS === 'ios' ? 16 : 14), fontWeight: 'bold' }}>#ExtraCareChatRoom</Text>
+                <Text style={{ fontSize: (Platform.OS === 'ios' ? 15 : 13), fontWeight: 'bold' }}>#ComfyHomeChatRoom</Text>
                 <View style={{ flexDirection: 'row' }}>
                   <Text>652</Text>
                   <Text> people in chatroom</Text>
@@ -35,7 +93,16 @@ class Care extends Component {
           </View>
         </View>
 
-        <View style={{ flex: 2.5 }}></View>
+        <View style={{ flex: 2.4 }}>
+          <Grid
+            style={styles.list}
+            renderItem={this.renderItem}
+            renderPlaceholder={this.renderBlank}
+            data={imageDetails}
+            itemsPerRow={2}
+          />
+
+        </View>
       </View>
     );
   }
@@ -82,7 +149,38 @@ const styles = StyleSheet.create({
   buttonStyle: {
     width: (Platform.OS === 'ios' ? SCREEN_WIDTH / 2.3 : SCREEN_WIDTH / 2.4),
     paddingLeft: 15
-  }
+  },
+  item: {
+    flex: 1,
+    height: 160,
+  },
+  renderItemContainer: {
+  	flex: 1,
+  	justifyContent: 'center',
+  	alignItems: 'center',
+  	paddingTop: 5
+  },
+  itemImageStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    width: (width / 2) - HORIZONTAL_PADDING,
+    height: 160,
+  },
+  placeholderItemNameStyle: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    marginBottom: 5,
+    fontSize: 15,
+    color: 'white',
+    fontWeight: 'bold',
+    backgroundColor: '#0000007F',
+    borderRadius: 5,
+    paddingLeft: 1,
+    paddingRight: 3,
+    overflow: 'hidden'
+  },
+
 });
 
 export default Care;
