@@ -2,8 +2,25 @@ import { AsyncStorage } from 'react-native';
 import { Facebook } from 'expo';
 import {
   FACEBOOK_LOGIN_SUCCESS,
-  FACEBOOK_LOGIN_FAIL
+  FACEBOOK_LOGIN_FAIL,
+  EMAIL_CHANGED,
+  PASSWORD_CHANGED
 } from './types';
+
+export const emailChanged = (text) => {
+  return {
+    type: EMAIL_CHANGED,
+    payload: text
+  };
+};
+
+export const passwordChanged = (text) => {
+  return {
+    type: PASSWORD_CHANGED,
+    payload: text
+  };
+};
+
 
 export const facebookLogin = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');

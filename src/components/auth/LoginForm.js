@@ -18,7 +18,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
-  this.onAuthComplete(nextProps);
+    this.onAuthComplete(nextProps);
   }
 
   onAuthComplete(props) {
@@ -27,9 +27,17 @@ class LoginForm extends Component {
     }
   }
 
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={-800} >
 
           <View style={styles.container}>
             <View>
@@ -47,11 +55,8 @@ class LoginForm extends Component {
                         autoCorrect={false}
                         style={styles.TextInput}
                         underlineColorAndroid='transparent'
-                        onChangeText={(text) => {
-                            this.setState({
-                                username: text
-                            });
-                        }}
+                        onChangeText={this.onEmailChange.bind(this)}
+                        value={this.props.email}
                     />
                 </View>
                 <View>
@@ -66,8 +71,8 @@ class LoginForm extends Component {
                         style={styles.TextInput}
                         underlineColorAndroid="transparent"
                         ref={(input) => this.password = input}
-                        onChangeText={(text) => {this.setState({ password: text });
-                        }}
+                        onChangeText={this.onPasswordChange.bind(this)}
+                        value={this.props.password}
                     />
                 </View>
             </View>
@@ -86,7 +91,7 @@ class LoginForm extends Component {
                     backgroundColor='#0F3B5F'
 
                     onPress={() => {
-                                alert('login');
+                                alert(this.props.email);
                   }}
                 />
                 <SocialIcon
@@ -118,7 +123,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     alignItems: 'center',
     justifyContent: 'center',
-
   },
   backgroundImage: {
     flex: 1,
@@ -157,7 +161,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ auth }) {
-  return { token: auth.token };
+  const { token, email, password } = auth;
+
+  return { token, email, password };
 }
 
 export default connect(mapStateToProps, ractions)(LoginForm);
