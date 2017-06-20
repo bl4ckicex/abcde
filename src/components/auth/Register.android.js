@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
@@ -13,26 +13,61 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
+import { connect } from 'react-redux';
+import * as ractions from '../../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class Register extends React.Component {
-    constructor(props) {
-        super(props);
+class Register extends Component {
+  constructor(props) {
+      super(props);
 
-        this.state = {
-            username: '',
-            firstname: '',
-            lastname: '',
-            password: '',
-            gender: '-',
-            date: '',
-            maxDate: new Date()
-        };
+      this.state = {
+          maxDate: new Date()
+      };
     }
+
+    onEmailChange(text) {
+      this.props.emailRegChanged(text);
+    }
+
+    onPasswordChange(text) {
+      this.props.passwordRegChanged(text);
+    }
+
+    onRetryPasswordChange(text) {
+      this.props.retrypasswordRegChanged(text);
+    }
+
+    onFirstNameChange(text) {
+      this.props.firstnameRegChanged(text);
+    }
+
+    onLastNameChange(text) {
+      this.props.lastnameRegChanged(text);
+    }
+
+    onGenderChange(text) {
+      this.props.genderRegChanged(text);
+    }
+
+    onDobChange(text) {
+      this.props.dobRegChanged(text);
+    }
+
+    onButtonPress() {
+      const { email, password } = this.props;
+
+      if (this.props.email !== '' && this.props.password !== '') {
+        this.props.registerUser({ email, password });
+      } else {
+        alert('empty email or password');
+      }
+    }
+
     render() {
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={-800} >
 
                 <View style={styles.form}>
                     <View style={styles.profilepic}>
@@ -55,11 +90,8 @@ class Register extends React.Component {
                             autoCorrect={false}
                             style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                             underlineColorAndroid="transparent"
-                            onChangeText={(text) => {
-                                this.setState({
-                                    username: text
-                                });
-                            }}
+                            onChangeText={this.onEmailChange.bind(this)}
+                            value={this.props.email}
                         />
                     </View>
 
@@ -74,11 +106,8 @@ class Register extends React.Component {
                               style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                               underlineColorAndroid="transparent"
                               ref={(input) => this.firstname = input}
-                              onChangeText={(text) => {
-                                  this.setState({
-                                      firstname: text
-                                  });
-                              }}
+                              onChangeText={this.onFirstNameChange.bind(this)}
+                              value={this.props.firstname}
                           />
                       </View>
 
@@ -93,11 +122,8 @@ class Register extends React.Component {
                               style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                               underlineColorAndroid="transparent"
                               ref={(input) => this.lastname = input}
-                              onChangeText={(text) => {
-                                  this.setState({
-                                      lastname: text
-                                  });
-                              }}
+                              onChangeText={this.onLastNameChange.bind(this)}
+                              value={this.props.lastname}
                           />
                       </View>
 
@@ -111,11 +137,8 @@ class Register extends React.Component {
                             style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                             underlineColorAndroid="transparent"
                             ref={(input) => this.password = input}
-                            onChangeText={(text) => {
-                                this.setState({
-                                    password: text
-                                });
-                            }}
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
                         />
                     </View>
                     <View>
@@ -127,11 +150,8 @@ class Register extends React.Component {
                             style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                             underlineColorAndroid="transparent"
                             ref={(input) => this.retypepassword = input}
-                            onChangeText={(text) => {
-                                this.setState({
-                                    retypepassword: text
-                                });
-                            }}
+                            onChangeText={this.onRetryPasswordChange.bind(this)}
+                            value={this.props.retypepassword}
                         />
                     </View>
 
@@ -139,9 +159,10 @@ class Register extends React.Component {
                       <View style={{ borderWidth: 1, borderColor: 'gray', paddingLeft: 3, justifyContent: 'center' }}>
                           <Picker
                               style={{ width: 0.3 * SCREEN_WIDTH, height: 20 }}
-                              selectedValue={this.state.gender}
+                              selectedValue={this.props.gender}
                               mode='dropdown'
-                              onValueChange={(gender) => this.setState({ gender })} >
+                              onValueChange={(gender) => this.onGenderChange(gender)}
+                          >
                                   <Picker.Item label="Gender" value="-" />
                                   <Picker.Item label="Male" value="male" />
                                   <Picker.Item label="Female" value="female" />
@@ -150,7 +171,7 @@ class Register extends React.Component {
                         <View>
                             <DatePicker
                                 style={styles.datepicker}
-                                date={this.state.date}
+                                date={this.props.dob}
                                 mode="date"
                                 placeholder="DOB"
                                 format="DD-MM-YYYY"
@@ -158,15 +179,18 @@ class Register extends React.Component {
                                 maxDate={this.state.maxDate}
                                 confirmBtnText="Confirm"
                                 cancelBtnText="Cancel"
-                                onDateChange={(date) => { this.setState({ date })}}
+                                onDateChange={(date) => { this.onDobChange(date); }}
                             />
                         </View>
                     </View>
                 </View>
                 <View style={styles.submit}>
-                    <Button raised title='SIGN UP' backgroundColor='black' onPress={() => {
-                        Actions.mobile();
-                    }}/>
+                    <Button
+                      raised
+                      title='SIGN UP'
+                      backgroundColor='#0B486B'
+                      onPress={this.onButtonPress.bind(this)}
+                    />
                 </View>
                 <View style={styles.disclaimer}>
                     <Text style={styles.disclaimerText}>By signing up you agree to the{'\n'}<Text style={{color:"blue", textDecorationLine:"underline"}} onPress={() => {
@@ -241,4 +265,27 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Register;
+function mapStateToProps({ reg }) {
+  const { email,
+          password,
+          retrypassword,
+          firstname,
+          lastname,
+          gender,
+          dob,
+          userID,
+          token
+        } = reg;
+
+  return { email,
+           password,
+           retrypassword,
+           firstname,
+           lastname,
+           gender,
+           dob,
+           userID,
+           token };
+}
+
+export default connect(mapStateToProps, ractions)(Register);

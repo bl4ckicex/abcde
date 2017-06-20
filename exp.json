@@ -2,7 +2,7 @@
   "name": "Mavent",
   "description": "Connecting Neighbour, Changing Lives.",
   "slug": "Mavent",
-  "privacy": "public",
+  "privacy": "unlisted",
   "sdkVersion": "17.0.0",
   "version": "1.0.0",
   "orientation": "portrait",

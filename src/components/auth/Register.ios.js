@@ -13,24 +13,37 @@ import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
 import SimplePicker from 'react-native-simple-picker';
+import { connect } from 'react-redux';
+import * as ractions from '../../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const options = ['Male', 'Female'];
+const options = ['male', 'female'];
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            username: '',
             firstname: '',
             lastname: '',
-            password: '',
             gender: 'Gender',
             date: '',
             maxDate: new Date()
         };
     }
+
+    onEmailChange(text) {
+      this.props.emailRegisterChanged(text);
+    }
+
+    onPasswordChange(text) {
+      this.props.passwordRegisterChanged(text);
+    }
+
+    onRetryPasswordChange(text) {
+      this.props.retrypasswordRegisterChanged(text);
+    }
+
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -56,11 +69,8 @@ class Register extends React.Component {
                             autoCorrect={false}
                             style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                             underlineColorAndroid="transparent"
-                            onChangeText={(text) => {
-                                this.setState({
-                                    username: text
-                                });
-                            }}
+                            onChangeText={this.onEmailChange.bind(this)}
+                            value={this.props.email}
                         />
                     </View>
 
@@ -112,11 +122,8 @@ class Register extends React.Component {
                             style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                             underlineColorAndroid="transparent"
                             ref={(input) => this.password = input}
-                            onChangeText={(text) => {
-                                this.setState({
-                                    password: text
-                                });
-                            }}
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
                         />
                     </View>
                     <View>
@@ -128,11 +135,8 @@ class Register extends React.Component {
                             style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingLeft: 10, fontSize: 14 }}
                             underlineColorAndroid="transparent"
                             ref={(input) => this.retypepassword = input}
-                            onChangeText={(text) => {
-                                this.setState({
-                                    retypepassword: text
-                                });
-                            }}
+                            onChangeText={this.onRetryPasswordChange.bind(this)}
+                            value={this.props.retypepassword}
                         />
                     </View>
 
@@ -249,4 +253,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Register;
+function mapStateToProps({ reg }) {
+  const { email, password, retrypassword } = reg;
+
+  return { email, password, retrypassword };
+}
+
+export default connect(mapStateToProps, ractions)(Register);

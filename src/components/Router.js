@@ -1,11 +1,21 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import OTP from './auth/OTP';
-import Register from './auth/Register';
-import Login from './auth/LoginForm';
-import MobileNumber from './auth/MobileNumber';
+
 import WelcomeScreen from './auth/WelcomeScreen';
+import Login from './auth/LoginForm';
+
+import registerMain from './auth/registerMain';
+import registerName from './auth/registerName';
+import registerEmail from './auth/registerEmail';
+import registerGender from './auth/registerGender';
+import registerDOB from './auth/registerDOB';
+import registerPassword from './auth/registerPassword';
+import registerTnC from './auth/registerTnC';
+import registerMobile from './auth/registerMobile';
+import registerOTP from './auth/registerOTP';
+
 import MainCategories from './mainUI/MainCategories';
+
 import comfy from './mainUI/SubCategories/comfy';
 import Care from './mainUI/SubCategories/Care';
 import enEvent from './mainUI/SubCategories/enEvent';
@@ -20,11 +30,20 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key='auth' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18 }}>
+
         <Scene key="welcomescreen" component={WelcomeScreen} hideNavBar />
         <Scene key="login" component={Login} title="Please Login" hideNavBar renderBackButton={() => (null)} panHandlers={null} />
-        <Scene key="register" component={Register} title="Registration" hideNavBar={false} />
-        <Scene key="mobile" component={MobileNumber} title="Mobile Number" />
-        <Scene key="otp" component={OTP} title="Validate OTP" />
+
+        <Scene key="registerMain" component={registerMain} title="Create account" hideNavBar={false} />
+        <Scene key="registerName" component={registerName} title="Name" hideNavBar={false} />
+        <Scene key="registerEmail" component={registerEmail} title="Email Address" hideNavBar={false} />
+        <Scene key="registerDOB" component={registerDOB} title="Date of Birth" hideNavBar={false} />
+        <Scene key="registerGender" component={registerGender} title="Gender" hideNavBar={false} />
+        <Scene key="registerPassword" component={registerPassword} title="Password" hideNavBar={false} />
+        <Scene key="registerTnC" component={registerTnC} title="Terms & Privacy" hideNavBar={false} />
+        <Scene key="registerMobile" component={registerMobile} title="Mobile" hideNavBar={false} />
+        <Scene key="registerOTP" component={registerOTP} title="Verify OTP" hideNavBar={false} />
+
       </Scene>
 
       <Scene key='mainUI' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18, fontWeight: '400' }}>

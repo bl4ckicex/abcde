@@ -1,7 +1,7 @@
 Component Done
   WelcomeScreen
   LoginForm
-  RegisterForm
+  RegisterForm - iOS having a small bug (simple picker)
   Request OTP
   Validate OTP
   Discovery

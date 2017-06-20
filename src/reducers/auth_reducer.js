@@ -2,8 +2,8 @@ import { REHYDRATE } from 'redux-persist/constants';
 import {
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL,
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED
+  EMAIL_LOGIN_CHANGED,
+  PASSWORD_LOGIN_CHANGED
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -17,10 +17,10 @@ export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     // case REHYDRATE:
     //   return action.payload;
-    case EMAIL_CHANGED:
+    case EMAIL_LOGIN_CHANGED:
       console.log(action);
       return { ...state, email: action.payload };
-    case PASSWORD_CHANGED:
+    case PASSWORD_LOGIN_CHANGED:
       console.log(action);
       return { ...state, password: action.payload };
     case FACEBOOK_LOGIN_SUCCESS:

@@ -3,24 +3,23 @@ import { Facebook } from 'expo';
 import {
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL,
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED
+  EMAIL_LOGIN_CHANGED,
+  PASSWORD_LOGIN_CHANGED
 } from './types';
 
-export const emailChanged = (text) => {
+export const emailLoginChanged = (text) => {
   return {
-    type: EMAIL_CHANGED,
+    type: EMAIL_LOGIN_CHANGED,
     payload: text
   };
 };
 
-export const passwordChanged = (text) => {
+export const passwordLoginChanged = (text) => {
   return {
-    type: PASSWORD_CHANGED,
+    type: PASSWORD_LOGIN_CHANGED,
     payload: text
   };
 };
-
 
 export const facebookLogin = () => async dispatch => {
   let token = await AsyncStorage.getItem('fb_token');
