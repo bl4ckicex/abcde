@@ -7,6 +7,9 @@
       "fetch": true
    },
   "rules": {
-      "no-mixed-spaces-and-tabs": 0
+      "no-mixed-spaces-and-tabs": 0,
+      "linebreak-style": 0,
+      "arrow-body-style": 0,
+      "max-len": 0,
    }
 }

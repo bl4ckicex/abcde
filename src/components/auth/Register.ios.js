@@ -12,7 +12,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
-import SimplePicker from 'react-native-simple-picker';
 import { connect } from 'react-redux';
 import * as ractions from '../../actions';
 

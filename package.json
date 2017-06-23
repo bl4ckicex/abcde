@@ -16,6 +16,7 @@
     "react-native-grid-component": "^1.0.6",
     "react-native-looped-carousel": "^0.1.7",
     "react-native-maps": "^0.15.2",
+    "react-native-modal-picker": "0.0.16",
     "react-native-router-flux": "^3.39.1",
     "react-native-scrollable-tab-view": "^0.6.6",
     "react-native-simple-picker": "^1.2.1",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-
+import test2 from './test2';
 import WelcomeScreen from './auth/WelcomeScreen';
 import Login from './auth/LoginForm';
 
@@ -15,6 +15,7 @@ import registerMobile from './auth/registerMobile';
 import registerOTP from './auth/registerOTP';
 
 import MainCategories from './mainUI/MainCategories';
+import ListSkills from './mainUI/ListSkills';
 
 import comfy from './mainUI/SubCategories/comfy';
 import Care from './mainUI/SubCategories/Care';
@@ -29,7 +30,8 @@ import enKnowledge from './mainUI/SubCategories/enKnowledge';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key='auth' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18 }}>
+      <Scene key='auth' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18, fontWeight: '300' }}>
+        <Scene key="test2" component={test2} title="Monetizing your skill" />
 
         <Scene key="welcomescreen" component={WelcomeScreen} hideNavBar />
         <Scene key="login" component={Login} title="Please Login" hideNavBar renderBackButton={() => (null)} panHandlers={null} />
@@ -48,6 +50,7 @@ const RouterComponent = () => {
 
       <Scene key='mainUI' navigationBarStyle={{ backgroundColor: '#0B486B', borderBottomWidth: 0 }} titleStyle={{ color: 'white', fontSize: 18, fontWeight: '400' }}>
         <Scene key="MainCategories" component={MainCategories} title="M A V E N T" renderBackButton={() => (null)} panHandlers={null} />
+        <Scene key="ListSkills" component={ListSkills} title="Monetizing your skill" />
         <Scene key="comfy" component={comfy} title="Comfortable Home" />
         <Scene key="Care" component={Care} title="Extra Care" />
         <Scene key="enEvent" component={enEvent} title="Enhancing Events" />

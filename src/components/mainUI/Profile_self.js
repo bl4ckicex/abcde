@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { SocialIcon, Icon } from 'react-native-elements';
 import StarRating from 'react-native-star-rating';
+import { Actions } from 'react-native-router-flux';
 import data from './reviews.json';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -137,7 +138,7 @@ class Profile extends Component {
                       starColor="#FFDD44"
                     />
                   </View>
-                  <TouchableOpacity onPress={() => alert('Adding new skill to monetize!')}>
+                  <TouchableOpacity onPress={() => Actions.ListSkills()}>
                     <View style={{ height: 50, backgroundColor: 'rgba(177, 183, 185, 0.1)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.1)', borderRadius: 8 }}>
                       <Icon name='add-circle' color='rgba(177, 183, 185, 0.6)' />
                     </View>
