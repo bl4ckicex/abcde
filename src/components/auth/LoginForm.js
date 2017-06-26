@@ -25,7 +25,7 @@ class LoginForm extends Component {
      super();
      this.state = {
        showView: true,
-     }
+     };
    }
 
   componentWillMount() {

@@ -7,12 +7,14 @@ import {
   Dimensions,
   View,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native';
 import ModalPicker from 'react-native-modal-picker';
+import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const data = [
             { key: '0', section: true, label: 'Category' },
@@ -98,6 +100,10 @@ class test2 extends Component {
           Fri: false,
           Sat: false,
           Sun: false,
+          morning: false,
+          afternoon: false,
+          evening: false,
+          night: false
           };
 
   onPressMon = () => {
@@ -126,6 +132,22 @@ class test2 extends Component {
 
   onPressSun = () => {
     this.setState({ Sun: !this.state.Sun });
+  }
+
+  onPressMorning = () => {
+    this.setState({ morning: !this.state.morning });
+  }
+
+  onPressAfternoon = () => {
+    this.setState({ afternoon: !this.state.afternoon });
+  }
+
+  onPressEvening = () => {
+    this.setState({ evening: !this.state.evening });
+  }
+
+  onPressNight = () => {
+    this.setState({ night: !this.state.night });
   }
 
   renderCarePicker = () => {
@@ -297,104 +319,161 @@ class test2 extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.viewContainer}>
-          <View style={styles.CardContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView style={styles.container}>
+          <View style={styles.viewContainer}>
+            <View style={styles.CardContainer}>
 
-            <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 10 }}>
-              <Text style={{ fontSize: 16, fontWeight: '600' }}>Service Category</Text>
-              <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', height: 80, borderRadius: 3, }}>
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 10 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Service Category</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', height: 80, borderRadius: 3, }}>
 
-              <ModalPicker
-                  data={data}
-                  initValue="Select a Category"
-                  onChange={(option) => { this.setState({ category: option.label }); }}
-              >
+                <ModalPicker
+                    data={data}
+                    initValue="Select a Category"
+                    onChange={(option) => { this.setState({ subcategory: '' }); this.setState({ category: option.label }); }}
+                >
 
-                  <TextInput
-                      style={{ borderWidth: 1, borderColor: '#ccc', padding: 10, height: 40 }}
-                      editable={false}
-                      placeholder="Select a Category"
-                      value={this.state.category}
-                  />
-              </ModalPicker>
-              {this.renderPicker()}
+                    <TextInput
+                        style={{ borderWidth: 1, borderColor: '#ccc', padding: 10, height: 40 }}
+                        editable={false}
+                        placeholder="Select a Category"
+                        value={this.state.category}
+                    />
+                </ModalPicker>
+                {this.renderPicker()}
+                </View>
               </View>
-            </View>
 
-            <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
-              <Text style={{ fontSize: 16, fontWeight: '600' }}>Service Description</Text>
-              <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8 }}>
-                <TextInput
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Service Description</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8 }}>
+                  <TextInput
                     placeholderTextColor="rgba(0,0,0,0.3)"
                     placeholder="Please keep it within 140 characters"
                     keyboardType="default"
                     autoCorrect
                     autoCapitalize="sentences"
                     multiline
+                    returnKeyType='next'
+                    // onSubmitEditing={() => this.postal.focus()}
                     maxLength={140}
                     autoCorrect={false}
-                    style={{ height: 100, width: 0.80 * SCREEN_WIDTH, alignItems: 'center', padding: 8, justifyContent: 'center', fontSize: 16, textAlign: 'center', }}
+                    style={{ width: 0.80 * SCREEN_WIDTH, alignItems: 'center', padding: 8, justifyContent: 'center', fontSize: 16, textAlign: 'center', }}
                     underlineColorAndroid="transparent"
-                />
+                  />
+                </View>
               </View>
-            </View>
 
-            <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
-              <Text style={{ fontSize: 16, fontWeight: '600' }}>Day Availability</Text>
-              <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8, flexDirection: 'row', justifyContent: 'space-around' }}>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Mon ? styles.buttonPressed : styles.button} onPress={this.onPressMon }>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>M</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Tue ? styles.buttonPressed : styles.button} onPress={this.onPressTue}>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>T</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Wed ? styles.buttonPressed : styles.button} onPress={this.onPressWed}>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>W</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Thu ? styles.buttonPressed : styles.button} onPress={this.onPressThu}>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>T</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Fri ? styles.buttonPressed : styles.button} onPress={this.onPressFri}>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>F</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Sat ? styles.buttonPressed : styles.button} onPress={this.onPressSat}>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>S</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor='#158BCF' style={this.state.Sun ? styles.buttonPressed : styles.button} onPress={this.onPressSun}>
-                  <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 28, fontWeight: 'bold' }}>S</Text>
-                  </View>
-                </TouchableHighlight>
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Address: Postal Code</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8 }}>
+                  <TextInput
+                    placeholderTextColor="rgba(0,0,0,0.3)"
+                    placeholder="6-Digits postal code"
+                    returnKeyType='go'
+                    keyboardType="numeric"
+                    maxLength={6}
+                    // ref={(input) => this.postal = input}
+                    underlineColorAndroid='transparent'
+                    style={{ height: 40, width: 0.8 * SCREEN_WIDTH, padding: 8, fontSize: 16 }}
+                  />
+                </View>
               </View>
-            </View>
 
-            <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
-              <Text style={{ fontSize: 16, fontWeight: '600' }}>Time Availability</Text>
-              <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8, flexDirection: 'row', justifyContent: 'space-around' }}>
-                <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3 }}></View>
-                <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3 }}></View>
-                <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3 }}></View>
-                <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 42, borderRadius: 3 }}></View>
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Day Availability</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8, flexDirection: 'row', justifyContent: 'space-around' }}>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Mon ? styles.buttonPressed : styles.button} onPress={this.onPressMon}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>M</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Tue ? styles.buttonPressed : styles.button} onPress={this.onPressTue}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>T</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Wed ? styles.buttonPressed : styles.button} onPress={this.onPressWed}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>W</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Thu ? styles.buttonPressed : styles.button} onPress={this.onPressThu}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>T</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Fri ? styles.buttonPressed : styles.button} onPress={this.onPressFri}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>F</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Sat ? styles.buttonPressed : styles.button} onPress={this.onPressSat}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>S</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight underlayColor='#158BCF' style={this.state.Sun ? styles.buttonPressed : styles.button} onPress={this.onPressSun}>
+                    <View style={{ borderWidth: 1, borderColor: '#ccc', height: 40, width: 40, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ fontSize: 28, fontWeight: 'bold' }}>S</Text>
+                    </View>
+                  </TouchableHighlight>
+                </View>
               </View>
+
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15, height: 140 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Time Availability</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, padding: 8, justifyContent: 'space-around' }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <TouchableHighlight underlayColor='#158BCF' style={this.state.morning ? styles.buttonPressed : styles.button} onPress={this.onPressMorning}>
+                      <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 95, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600' }}>Morning</Text>
+                      </View>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight underlayColor='#158BCF' style={this.state.afternoon ? styles.buttonPressed : styles.button} onPress={this.onPressAfternoon}>
+                      <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 95, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600' }}>Afternoon</Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
+
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <TouchableHighlight underlayColor='#158BCF' style={this.state.evening ? styles.buttonPressed : styles.button} onPress={this.onPressEvening}>
+                      <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 95, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600' }}>Evening</Text>
+                      </View>
+                    </TouchableHighlight>
+                    <TouchableHighlight underlayColor='#158BCF' style={this.state.night ? styles.buttonPressed : styles.button} onPress={this.onPressNight}>
+                      <View style={{ borderWidth: 1, borderColor: '#ccc', height: 42, width: 95, borderRadius: 3, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600' }}>Night</Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
+                </View>
+              </View>
+
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 1, paddingBottom: 12, flexDirection: 'row', justifyContent: 'space-around' }}>
+                  <Button
+                    // raised
+                    title="Cancel"
+                    backgroundColor='#ccc'
+                    color="black"
+                    buttonStyle={{ width: 0.35 * SCREEN_WIDTH, elevation: 10, height: 50 }}
+                  />
+                  <Button
+                    raised
+                    title="List it!"
+                    backgroundColor='#0B486B'
+                    buttonStyle={{ width: 0.35 * SCREEN_WIDTH, elevation: 10, height: 50 }}
+                  />
+              </View>
+
             </View>
-
-
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </TouchableWithoutFeedback>
     );
   }
 }
