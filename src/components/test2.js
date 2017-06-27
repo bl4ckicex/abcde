@@ -346,6 +346,47 @@ class test2 extends Component {
               </View>
 
               <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Tag</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 6 }}>
+                  <TextInput
+                    placeholderTextColor="rgba(0,0,0,0.3)"
+                    placeholder="Tag"
+                    keyboardType="default"
+                    autoCorrect
+                    autoCapitalize="sentences"
+                    // multiline
+                    returnKeyType='next'
+                    onSubmitEditing={() => this.title.focus()}
+                    maxLength={80}
+                    autoCorrect={false}
+                    style={{ height: 40, width: 0.80 * SCREEN_WIDTH, alignItems: 'center', padding: 8, justifyContent: 'center', fontSize: 16, }}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
+              </View>
+
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>Service Title</Text>
+                <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 6 }}>
+                  <TextInput
+                    placeholderTextColor="rgba(0,0,0,0.3)"
+                    placeholder="Title"
+                    keyboardType="default"
+                    autoCorrect
+                    autoCapitalize="sentences"
+                    // multiline
+                    returnKeyType='next'
+                    onSubmitEditing={() => this.desc.focus()}
+                    ref={(input) => this.title = input}
+                    maxLength={80}
+                    autoCorrect={false}
+                    style={{ height: 40, width: 0.80 * SCREEN_WIDTH, alignItems: 'center', padding: 8, justifyContent: 'center', fontSize: 16, }}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
+              </View>
+
+              <View style={{ width: 0.85 * SCREEN_WIDTH, marginTop: 15 }}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>Service Description</Text>
                 <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', borderRadius: 3, alignItems: 'center', padding: 8 }}>
                   <TextInput
@@ -356,10 +397,10 @@ class test2 extends Component {
                     autoCapitalize="sentences"
                     multiline
                     returnKeyType='next'
-                    // onSubmitEditing={() => this.postal.focus()}
+                    ref={(input) => this.desc = input}
                     maxLength={140}
                     autoCorrect={false}
-                    style={{ width: 0.80 * SCREEN_WIDTH, alignItems: 'center', padding: 8, justifyContent: 'center', fontSize: 16, textAlign: 'center', }}
+                    style={{ width: 0.80 * SCREEN_WIDTH, alignItems: 'center', padding: 8, justifyContent: 'center', fontSize: 16, }}
                     underlineColorAndroid="transparent"
                   />
                 </View>
