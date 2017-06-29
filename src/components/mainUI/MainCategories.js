@@ -11,14 +11,14 @@ import {
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import MainTabBar from './MainTabBar';
 import Discovery from './Discovery';
-import Profile from './Profile_self';
+import Profile from './ProfileSelf';
 import CategoryView from './CategoryView';
 
 
 class MainCategories extends Component {
   // This is to remove fb token for retry purposes
   componentWillMount() {
-    // AsyncStorage.removeItem('fb_token');
+    AsyncStorage.removeItem('fb_token');
   }
 
   render() {

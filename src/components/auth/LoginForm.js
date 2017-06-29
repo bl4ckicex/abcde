@@ -158,7 +158,7 @@ class LoginForm extends Component {
                 <Text style={styles.textStyle}>Forget Password</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.mainUI()}>
               <View style={styles.cardbutton}>
                 <Text style={styles.textStyle}>Login</Text>
               </View>

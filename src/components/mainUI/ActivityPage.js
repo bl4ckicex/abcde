@@ -4,18 +4,12 @@ import {
   Text,
   StyleSheet,
   Platform,
-  Dimensions,
   View,
-  TextInput,
-  Image,
-  TouchableHighlight,
-  Keyboard,
-  TouchableWithoutFeedback
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import Tested from './mainUI/Tested';
+import MySkillsActivity from './MySkillsActivity';
 
-class Test2 extends Component {
+class ActivityPage extends Component {
 
   render() {
     return (
@@ -31,7 +25,7 @@ class Test2 extends Component {
             style={{ flex: 1 }}
           >
             <View style={{ marginTop: 8 }}></View>
-            <Tested />
+            <MySkillsActivity />
           </ScrollView>
 
           <Text tabLabel='Requested Skills'>favorite</Text>
@@ -52,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Test2;
+export default ActivityPage;

@@ -15,7 +15,7 @@ import {
   Permissions,
 } from 'expo';
 import { Icon } from 'react-native-elements';
- import data from './provider.json';
+import data from './provider.json';
 
 const SCREEN_H = Dimensions.get('window').height;
 

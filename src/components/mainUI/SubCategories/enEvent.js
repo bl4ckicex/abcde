@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Grid from 'react-native-grid-component';
 import { Button } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const { width } = Dimensions.get('window');
@@ -46,16 +47,16 @@ class enEvent extends Component {
   navigate = (id) => {
     switch (id) {
       case 'makeup':
-        console.log(id);
+        Actions.GenericView({ title: 'Makeup Artist', cat: 'Makeup Artist' });
         break;
       case 'performer':
-        console.log(id);
+        Actions.GenericView({ title: 'Performer', cat: 'Performer' });
         break;
       case 'photog':
-        console.log(id);
+        Actions.GenericView({ title: 'Photographer', cat: 'Photographer' });
         break;
       case 'others':
-        console.log(id);
+        Actions.GenericView({ title: 'Others', cat: 'Others' });
         break;
       default:
         break;

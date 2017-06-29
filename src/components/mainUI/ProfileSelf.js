@@ -138,7 +138,7 @@ class Profile extends Component {
                       starColor="#FFDD44"
                     />
                   </View>
-                  <TouchableOpacity onPress={() => Actions.ListSkills()}>
+                  <TouchableOpacity onPress={() => Actions.ListSkill()}>
                     <View style={{ height: 50, backgroundColor: 'rgba(177, 183, 185, 0.1)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.1)', borderRadius: 8 }}>
                       <Icon name='add-circle' color='rgba(177, 183, 185, 0.6)' />
                     </View>

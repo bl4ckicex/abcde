@@ -130,3 +130,43 @@
 <Scene key="registerGender" component={registerGender} title="Gender" hideNavBar={false} />
 <Scene key="registerPassword" component={registerPassword} title="Password" hideNavBar={false} />
 <Scene key="registerTnC" component={registerTnC} title="Terms & Privacy" hideNavBar={false} />
+
+
+<View style={styles.offered>
+  <Text style={{ fontSize: 12, color: 'white' }}>Offer:</Text>
+  <Text style={{ fontSize: 16, color: 'white' }}>$45</Text>
+</View>
+
+
+
+return (
+  <View key={request.id} style={{ height: 100, width: SCREEN_WIDTH, borderWidth: 1, borderColor: '#ccc', flexDirection: 'row' }}>
+    <View style={{ flex: 1.2, justifyContent: 'center', alignItems: 'center' }}>
+      <Image source={require('../../assets/images/profile.png')} style={{ height: 60, width: 60, borderRadius: 30 }} />
+      <Text>request.Dist</Text>
+    </View>
+
+    <View style={{ flex: 3, paddingLeft: 3, paddingTop: 4 }}>
+      <Text style={{ fontSize: 12, color: '#ccc' }}>request.Name</Text>
+      <View style={{ height: 2 }}></View>
+      <Text style={{ fontSize: 14, fontWeight: 'bold' }}>request.Title</Text>
+      <View style={{ height: 2 }}></View>
+      <Text style={{ fontSize: 13 }}>request.Message</Text>
+    </View>
+
+    <View style={{ flex: 1.5, alignItems: 'center' }}>
+      <View style={this.state.offered ? styles.offered : styles.n_offered}>
+        <Text style={{ fontSize: 12, color: 'white' }}>Offer:</Text>
+        <Text style={{ fontSize: 16, color: 'white' }}>request.price</Text>
+      </View>
+
+      <View style={{ marginTop: 4, flexDirection: 'row', justifyContent: 'space-around', width: 80 }}>
+          <Icon name='clear' size={30} iconStyle={{ paddingLeft: 2, borderWidth: 1, borderRadius: 3, borderColor: '#ccc' }} />
+          <Icon name='done' size={30} iconStyle={{ paddingLeft: 2, borderWidth: 1, borderRadius: 3, borderColor: '#ccc' }} />
+      </View>
+    </View>
+
+  </View>
+);
+
+ced0ce gray color
