@@ -3,6 +3,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import WelcomeScreen from './auth/WelcomeScreen';
 import Login from './auth/LoginForm';
+import Test from './Test';
 
 import registerMain from './auth/registerMain';
 import registerName from './auth/registerName';
@@ -40,7 +41,7 @@ const RouterComponent = () => {
         rightButtonImage={require('../../assets//icons/mailoutline.png')}
         onRight={() => { Actions.ActivityPage(); }}
       >
-
+        
         <Scene key="welcomescreen" component={WelcomeScreen} hideNavBar rightButtonImage={null} />
         <Scene key="login" component={Login} title="Please Login" hideNavBar renderBackButton={() => (null)} panHandlers={null} rightButtonImage={null} />
 

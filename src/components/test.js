@@ -1,239 +1,222 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  ScrollView,
-  Text,
-  StyleSheet,
   Platform,
-  Dimensions,
+  StyleSheet,
+  Text,
   View,
-  Picker
 } from 'react-native';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+import { GiftedChat, Actions, Bubble } from 'react-native-gifted-chat';
+import CustomActions from './CustomActions';
+import CustomView from './CustomView';
 
-class test extends Component {
+export default class Test extends React.Component {
   constructor(props) {
-      super(props);
+    super(props);
+    this.state = {
+      messages: [],
+      loadEarlier: true,
+      typingText: null,
+      isLoadingEarlier: false,
+    };
 
-      this.state = {
-          category: '-',
-          subcategory: '-'
+    this._isMounted = false;
+    this.onSend = this.onSend.bind(this);
+    this.onReceive = this.onReceive.bind(this);
+    this.renderCustomActions = this.renderCustomActions.bind(this);
+    this.renderBubble = this.renderBubble.bind(this);
+    this.renderFooter = this.renderFooter.bind(this);
+    this.onLoadEarlier = this.onLoadEarlier.bind(this);
+
+    this._isAlright = null;
+  }
+
+  componentWillMount() {
+    this._isMounted = true;
+    this.setState(() => {
+      return {
+        messages: require('./messages.js'),
       };
+    });
   }
 
-  renderCarePicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Midwives" value="midwives" />
-              <Picker.Item label="Elderly Care" value="elderly" />
-              <Picker.Item label="Baby Care" value="baby" />
-      </Picker>
-    );
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
-  renderComfyPicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Cleaning" value="clean" />
-              <Picker.Item label="Plumber" value="plumber" />
-      </Picker>
-    );
+  onLoadEarlier() {
+    this.setState((previousState) => {
+      return {
+        isLoadingEarlier: true,
+      };
+    });
+
+    setTimeout(() => {
+      if (this._isMounted === true) {
+        this.setState((previousState) => {
+          return {
+            messages: GiftedChat.prepend(previousState.messages, require('./old_messages.js')),
+            loadEarlier: false,
+            isLoadingEarlier: false,
+          };
+        });
+      }
+    }, 1000); // simulating network
   }
 
-  renderEventPicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Makeup Artist" value="makeup" />
-              <Picker.Item label="Performer" value="performer" />
-              <Picker.Item label="Photographer" value="photog" />
-              <Picker.Item label="Others" value="others" />
-      </Picker>
-    );
+  onSend(messages = []) {
+    this.setState((previousState) => {
+      return {
+        messages: GiftedChat.append(previousState.messages, messages),
+      };
+    });
+
+    // for demo purpose
+    this.answerDemo(messages);
   }
 
-  renderKnowledgePicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Music" value="music" />
-              <Picker.Item label="Tuition" value="tuition" />
-              <Picker.Item label="Others" value="others" />
-      </Picker>
-    );
-  }
-
-  renderTummyPicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Home Cooked" value="homecook" />
-              <Picker.Item label="Cooking Classes" value="cookingclass" />
-      </Picker>
-    );
-  }
-
-  renderHealthPicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Gym" value="gym" />
-              <Picker.Item label="Exercise Expert" value="exercise" />
-              <Picker.Item label="Sports" value="sports" />
-      </Picker>
-    );
-  }
-
-  renderHelpHPicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Grocery Shopper" value="grocery" />
-              <Picker.Item label="Pet Walker" value="petwalker" />
-      </Picker>
-    );
-  }
-
-  renderLookPicker() {
-    return (
-      <Picker
-        style={{ height: 40, flex: 1 }}
-        selectedValue={this.state.subcategory}
-        mode='dropdown'
-        onValueChange={(subcategory) => this.setState({ subcategory })}
-      >
-              <Picker.Item label="Sub Category" value="-" />
-              <Picker.Item label="Hair Dresser" value="hair" />
-              <Picker.Item label="Nail Artist" value="nail" />
-              <Picker.Item label="Others" value="others" />
-      </Picker>
-    );
-  }
-
-  renderPicker() {
-    switch (this.state.category) {
-      case 'comfy':
-        return this.renderComfyPicker();
-      case 'Care':
-        return this.renderCarePicker();
-      case 'enEvent':
-        return this.renderEventPicker();
-      case 'enKnowledge':
-        return this.renderKnowledgePicker();
-      case 'fillTummy':
-        return this.renderTummyPicker();
-      case 'health':
-        return this.renderHealthPicker();
-      case 'helpHand':
-        return this.renderHelpHPicker();
-      case 'lookBetter':
-        return this.renderLookPicker();
-      default:
-        return <View style={{ flex: 0.5, alignItems: 'flex-start', paddingLeft: 8 }}><Text>Select a category</Text></View>;
+  answerDemo(messages) {
+    if (messages.length > 0) {
+      if ((messages[0].image || messages[0].location) || !this._isAlright) {
+        this.setState((previousState) => {
+          return {
+            typingText: 'React Native is typing'
+          };
+        });
+      }
     }
+
+    setTimeout(() => {
+      if (this._isMounted === true) {
+        if (messages.length > 0) {
+          if (messages[0].image) {
+            this.onReceive('Nice picture!');
+          } else if (messages[0].location) {
+            this.onReceive('My favorite place');
+          } else {
+            if (!this._isAlright) {
+              this._isAlright = true;
+              this.onReceive('Alright');
+            }
+          }
+        }
+      }
+
+      this.setState((previousState) => {
+        return {
+          typingText: null,
+        };
+      });
+    }, 1000);
+  }
+
+  onReceive(text) {
+    this.setState((previousState) => {
+      return {
+        messages: GiftedChat.append(previousState.messages, {
+          _id: Math.round(Math.random() * 1000000),
+          text: text,
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+          },
+        }),
+      };
+    });
+  }
+
+  renderCustomActions(props) {
+    if (Platform.OS === 'ios') {
+      return (
+        <CustomActions
+          {...props}
+        />
+      );
+    }
+    const options = {
+      'Action 1': (props) => {
+        alert('option 1');
+      },
+      'Action 2': (props) => {
+        alert('option 2');
+      },
+      'Cancel': () => {},
+    };
+    return (
+      <Actions
+        {...props}
+        options={options}
+      />
+    );
+  }
+
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          left: {
+            backgroundColor: '#f0f0f0',
+          }
+        }}
+      />
+    );
+  }
+
+  renderCustomView(props) {
+    return (
+      <CustomView
+        {...props}
+      />
+    );
+  }
+
+  renderFooter(props) {
+    if (this.state.typingText) {
+      return (
+        <View style={styles.footerContainer}>
+          <Text style={styles.footerText}>
+            {this.state.typingText}
+          </Text>
+        </View>
+      );
+    }
+    return null;
   }
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.viewContainer}>
-          <View style={styles.CardContainer}>
+      <GiftedChat
+        messages={this.state.messages}
+        onSend={this.onSend}
+        loadEarlier={this.state.loadEarlier}
+        onLoadEarlier={this.onLoadEarlier}
+        isLoadingEarlier={this.state.isLoadingEarlier}
 
-            <View style={{ borderColor: 'black', width: 0.85 * SCREEN_WIDTH, marginTop: 5 }}>
-              <Text>Service Category</Text>
-              <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', height: 80, borderRadius: 3, }}>
-                <Picker
-                  style={{ height: 40, flex: 1 }}
-                  selectedValue={this.state.category}
-                  mode='dropdown'
-                  onValueChange={(category) => this.setState({ category })}
-                >
-                        <Picker.Item label="Category" value="-" />
-                        <Picker.Item label="Comfortable Home" value="comfy" />
-                        <Picker.Item label="Enhancing Knowledge" value="enKnowledge" />
-                        <Picker.Item label="Enhancing Events" value="enEvent" />
-                        <Picker.Item label="Extra Care" value="Care" />
-                        <Picker.Item label="Filling Tummies" value="fillTummy" />
-                        <Picker.Item label="Healthy Lifestyle" value="health" />
-                        <Picker.Item label="Helping Hands" value="helpHand" />
-                        <Picker.Item label="Look Better" value="lookBetter" />
-                </Picker>
-                {this.renderPicker()}
-              </View>
-            </View>
+        user={{
+          _id: 1, // sent messages should have same user._id
+        }}
 
-            <View style={{ borderColor: 'black', width: 0.85 * SCREEN_WIDTH, marginTop: 5 }}>
-              <Text>Service Description</Text>
-              <View style={{ marginTop: 3, width: 0.85 * SCREEN_WIDTH, backgroundColor: 'white', height: 100, borderRadius: 3 }}>
-
-              </View>
-            </View>
-
-          </View>
-        </View>
-      </ScrollView>
+        renderActions={this.renderCustomActions}
+        renderBubble={this.renderBubble}
+        renderCustomView={this.renderCustomView}
+        renderFooter={this.renderFooter}
+      />
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: (Platform.OS === 'android' ? 54 : 64),
-    // backgroundColor: 'blue',
-  },
-  viewContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  CardContainer: {
-    flex: 1,
-    width: 0.95 * SCREEN_WIDTH,
-    backgroundColor: '#C6C6CA',
+  footerContainer: {
     marginTop: 5,
-    borderRadius: 4,
-    alignItems: 'center'
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+  },
+  footerText: {
+    fontSize: 14,
+    color: '#aaa',
   },
 });
-
-export default test;

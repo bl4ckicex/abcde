@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
+import SimplePicker from 'react-native-simple-picker';
 import { connect } from 'react-redux';
 import * as ractions from '../../actions';
 
@@ -52,7 +53,7 @@ class registerGender extends Component {
           <SimplePicker
             ref={'picker'}
             options={options}
-            onSubmit={(option) => this.onGenderChange(option)}
+            onSubmit={(option) => { this.onGenderChange(option); this.setState({ gender: option }); }}
             selectedValue={this.props.gender}
           />
         </View>
