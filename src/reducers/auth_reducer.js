@@ -24,6 +24,7 @@ export default function (state = INITIAL_STATE, action) {
       console.log(action);
       return { ...state, password: action.payload };
     case FACEBOOK_LOGIN_SUCCESS:
+      console.log(action);
       return { token: action.payload };
     case FACEBOOK_LOGIN_FAIL:
       return { token: null };
